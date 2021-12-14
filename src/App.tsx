@@ -3,30 +3,33 @@ import "./App.css";
 import { Affix, Button, Col, Dropdown, Layout, Menu, Row } from "antd";
 import { Cinema, Community, MyPage } from "./pages";
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
+import Login from "./pages/Login";
+import PresentReserve from "./pages/PresentReserve";
 
 const { Header, Content, Footer } = Layout;
 
 function App() {
-  const handleMenuClick = (e) => {
-    console.log("click", e);
-  };
-
-  const menu = (
-    <Menu onClick={handleMenuClick}>
-      <Menu.Item key="1" icon={<UserOutlined />}>
-        로그인/로그아웃
-      </Menu.Item>
-      <Menu.Item key="2" icon={<UserOutlined />}>
-        예매현황
-      </Menu.Item>
-    </Menu>
-  );
-
   const [menuItemKey, setMenuItemKey] = React.useState<string>("cinema");
+
   const handleMenuItemOnClick = (e: any) => {
     console.log(e.key);
     setMenuItemKey(e.key);
   };
+
+  const handleDropDownOnClick = (e) => {
+    setMenuItemKey(e.key);
+  };
+
+  const dropDownMenu = (
+    <Menu onClick={handleDropDownOnClick}>
+      <Menu.Item key="login" icon={<UserOutlined />}>
+        로그인/로그아웃
+      </Menu.Item>
+      <Menu.Item key="presentReserve" icon={<UserOutlined />}>
+        예매현황
+      </Menu.Item>
+    </Menu>
+  );
 
   React.useEffect(() => {}, []);
 
@@ -41,20 +44,15 @@ function App() {
                 theme="dark"
                 mode="horizontal"
                 defaultSelectedKeys={[menuItemKey]}
+                onClick={handleMenuItemOnClick}
               >
-                <Menu.Item key={"cinema"} onClick={handleMenuItemOnClick}>
-                  시네마
-                </Menu.Item>
-                <Menu.Item key={"community"} onClick={handleMenuItemOnClick}>
-                  커뮤니티
-                </Menu.Item>
-                <Menu.Item key={"mypage"} onClick={handleMenuItemOnClick}>
-                  내 정보
-                </Menu.Item>
+                <Menu.Item key={"cinema"}>시네마</Menu.Item>
+                <Menu.Item key={"community"}>커뮤니티</Menu.Item>
+                <Menu.Item key={"mypage"}>내 정보</Menu.Item>
               </Menu>
             </Col>
             <Col span={1} offset={5}>
-              <Dropdown overlay={menu} trigger={["click"]}>
+              <Dropdown overlay={dropDownMenu} trigger={["click"]}>
                 <Button
                   icon={<UserOutlined style={{ fontSize: 20 }} />}
                   shape="circle"
@@ -79,6 +77,8 @@ function App() {
             {menuItemKey === "cinema" && <Cinema />}
             {menuItemKey === "community" && <Community />}
             {menuItemKey === "mypage" && <MyPage />}
+            {menuItemKey === "login" && <Login />}
+            {menuItemKey === "presentReserve" && <PresentReserve />}
           </Col>
         </Row>
       </Content>
