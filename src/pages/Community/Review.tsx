@@ -1,6 +1,22 @@
 import React from "react";
-import { Menu } from "antd";
-import { MailOutlined, AppstoreOutlined } from "@ant-design/icons";
+import WriteComment from "./WriteComment";
+import { Comment, Avatar } from "antd";
+
+const ExampleComment = ({ children }) => (
+  <Comment
+    actions={[<span key="comment-nested-reply-to">Reply to</span>]}
+    author={<a>Han Solo</a>}
+    avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
+    content={
+      <p>
+        We supply a series of design principles, practical patterns and high
+        quality design resources (Sketch and Axure).
+      </p>
+    }
+  >
+    {children}
+  </Comment>
+);
 
 function Review() {
   const [menuItemKey, setMenuItemKey] = React.useState<string>("movie");
@@ -9,7 +25,14 @@ function Review() {
     setMenuItemKey(e.key);
   };
 
-  return <React.Fragment>Review</React.Fragment>;
+  return (
+    <React.Fragment>
+      <ExampleComment />
+      <ExampleComment />
+      <ExampleComment />
+      <WriteComment />
+    </React.Fragment>
+  );
 }
 
 export default Review;
