@@ -5,26 +5,32 @@ import {
   AppstoreOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
+import Review from "./Community/Review";
+import Board from "./Community/Board";
 
 function Community() {
-  const [menuItemKey, setMenuItemKey] = React.useState<string>("mail");
+  const [menuItemKey, setMenuItemKey] = React.useState<string>("review");
 
   const handlMenuOnClick = (e: any) => {
     setMenuItemKey(e.key);
   };
   return (
-    <Menu
-      onClick={handlMenuOnClick}
-      selectedKeys={[menuItemKey]}
-      mode="horizontal"
-    >
-      <Menu.Item key="mail" icon={<MailOutlined />}>
-        리뷰/평점
-      </Menu.Item>
-      <Menu.Item key="app" icon={<AppstoreOutlined />}>
-        자유게시판
-      </Menu.Item>
-    </Menu>
+    <React.Fragment>
+      <Menu
+        onClick={handlMenuOnClick}
+        selectedKeys={[menuItemKey]}
+        mode="horizontal"
+      >
+        <Menu.Item key="review" icon={<MailOutlined />}>
+          리뷰/평점
+        </Menu.Item>
+        <Menu.Item key="board" icon={<AppstoreOutlined />}>
+          자유게시판
+        </Menu.Item>
+      </Menu>
+      {menuItemKey === "review" && <Review />}
+      {menuItemKey === "board" && <Board />}
+    </React.Fragment>
   );
 }
 
