@@ -1,3 +1,3 @@
-//정산관리
-export { default as Home } from "./Home";
-export { default as Note } from "./Note";
+export { default as Cinema } from "./Cinema";
+export { default as Community } from "./Community";
+export { default as MyPage } from "./MyPage";
