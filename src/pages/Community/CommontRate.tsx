@@ -12,7 +12,7 @@ function CommontRate() {
 
   return (
     <React.Fragment>
-      <Rate tooltips={desc} onChange={handleRateOnChange} value={3} />
+      <Rate tooltips={desc} onChange={handleRateOnChange} value={rate} />
     </React.Fragment>
   );
 }
