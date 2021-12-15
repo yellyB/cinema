@@ -80,7 +80,7 @@ function MovieList() {
 
   return (
     <React.Fragment>
-      <PageHeader className="Movie" title="Movie" subTitle="현재 상영작" />
+      <PageHeader title="Movie" subTitle="현재 상영작" />
       <Row gutter={[0, 16]}>
         {ranking.map((item: IMovieList, index: number) => (
           <Col span={8} key={index}>
