@@ -1,7 +1,7 @@
 import React from "react";
 import { Rate } from "antd";
 
-function CommontRate() {
+function CommentRate() {
   const desc = ["1점", "2점", "3점", "4점", "5점"];
 
   const [rate, setRate] = React.useState<number>(5);
@@ -17,4 +17,4 @@ function CommontRate() {
   );
 }
 
-export default CommontRate;
+export default CommentRate;

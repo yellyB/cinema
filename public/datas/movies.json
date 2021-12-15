@@ -1,54 +1,63 @@
 {
   "data": [
     {
+      "key": 0,
       "title": "스파이더맨:노 웨이 홈",
       "orignTitle": "Spider-Man",
       "bookRate": "35.0%",
       "releaseDate": "2021.12.15"
     },
     {
+      "key": 1,
       "title": "듄",
       "orignTitle": "DUNE",
       "bookRate": "23.0%",
       "releaseDate": "2021.10.20"
     },
     {
+      "key": 2,
       "title": "돈 룩 업",
       "orignTitle": "Don’t Look Up",
       "bookRate": "21.0%",
       "releaseDate": "2021.12.08"
     },
     {
+      "key": 3,
       "title": "아멜리에",
       "orignTitle": "Amelie Of Montmartre",
       "bookRate": "11.0%",
       "releaseDate": "2021.12.15"
     },
     {
+      "key": 4,
       "title": "엔칸토-마법의 세계",
       "orignTitle": "Encanto",
       "bookRate": "8.0%",
       "releaseDate": "2021.11.24"
     },
     {
+      "key": 5,
       "title": "티탄",
       "orignTitle": "Titane",
       "bookRate": "6.0%",
       "releaseDate": "2021.12.09"
     },
     {
+      "key": 6,
       "title": "프렌치 디스패치",
       "orignTitle": "The French Dispatch",
       "bookRate": "3.0%",
       "releaseDate": "2021.11.18"
     },
     {
+      "key": 7,
       "title": "마이 뉴욕 다이어리",
       "orignTitle": "MyNewYorkDiary",
       "bookRate": "1.0%",
       "releaseDate": "2021.12.08"
     },
     {
+      "key": 8,
       "title": "해피 아워",
       "orignTitle": "Happy Hour",
       "bookRate": "1.0%",

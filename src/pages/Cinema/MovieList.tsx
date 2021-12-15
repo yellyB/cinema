@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Card, Col, PageHeader, Row, Space } from "antd";
+import { Card, Col, PageHeader, Row, Space, Typography } from "antd";
 import { IMovieList } from "../../common/interface";
 import Meta from "antd/lib/card/Meta";
 import {
@@ -8,6 +8,8 @@ import {
   LikeOutlined,
   MessageOutlined,
 } from "@ant-design/icons/lib/icons";
+
+const { Link } = Typography;
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -38,7 +40,7 @@ const MovieList = () => {
 
   return (
     <React.Fragment>
-      <PageHeader title="Movie" subTitle="현재 상영작" />
+      <PageHeader title="Movie" subTitle="현재 상영 중" />
       <Row gutter={[8, 16]}>
         {ranking.map((item: IMovieList, index: number) => (
           <Col span={8} key={index}>
@@ -46,7 +48,7 @@ const MovieList = () => {
               hoverable
               key={index}
               title={index + 1 + " 위"}
-              extra={<a href="#">예매하기</a>}
+              extra={<Link href="#">예매하기</Link>}
               style={{ width: 300 }}
               cover={
                 <img

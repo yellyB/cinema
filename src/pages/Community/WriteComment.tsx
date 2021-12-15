@@ -1,7 +1,7 @@
 import React from "react";
 import { Comment, Avatar, Form, Button, List, Input, Rate } from "antd";
 import moment from "moment";
-import CommontRate from "./CommontRate";
+import CommentRate from "./CommentRate";
 
 const { TextArea } = Input;
 
@@ -17,7 +17,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
         onClick={onSubmit}
         type="primary"
       >
-        Add Comment
+        리뷰 추가
       </Button>
     </Form.Item>
   </>
@@ -62,7 +62,7 @@ function WriteComment() {
 
   return (
     <React.Fragment>
-      <CommontRate />
+      <CommentRate />
       <Comment
         avatar={
           <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />

@@ -68,7 +68,7 @@ function App() {
         style={{
           padding: "0 50px",
           width: "100%",
-          height: 500,
+          height: "100%",
         }}
       >
         <div className="site-layout-content" />
@@ -82,7 +82,7 @@ function App() {
           </Col>
         </Row>
       </Content>
-      <Footer style={{ textAlign: "center" }}>footer</Footer>
+      <Footer style={{ textAlign: "center" }}>Toy Project by.yelly</Footer>
     </Layout>
   );
 }
