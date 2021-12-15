@@ -79,12 +79,14 @@ const Reservation = () => {
           />
         </Col>
       </Row>
-      {stepValue === 0 && (
-        <StepOne
-          setSelectedMovie={setSelectedMovie}
-          setSelectedTheater={setSelectedTheater}
-        />
-      )}
+      <Card style={{ height: "100%" }}>
+        {stepValue === 0 && (
+          <StepOne
+            setSelectedMovie={setSelectedMovie}
+            setSelectedTheater={setSelectedTheater}
+          />
+        )}
+      </Card>
       {stepValue === 1 && <StepTwo />}
       {stepValue === 2 && <StepThree />}
     </React.Fragment>
