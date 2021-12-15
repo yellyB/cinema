@@ -1,87 +1,45 @@
 import React from "react";
-import { Avatar, Card, Col, Image, List, PageHeader, Row, Space } from "antd";
+import axios from "axios";
+import { Card, Col, PageHeader, Row, Space } from "antd";
 import { IMovieList } from "../../common/interface";
 import Meta from "antd/lib/card/Meta";
-import StarOutlined from "@ant-design/icons/lib/icons/StarOutlined";
-import LikeOutlined from "@ant-design/icons/lib/icons/LikeOutlined";
-import MessageOutlined from "@ant-design/icons/lib/icons/MessageOutlined";
-import SettingOutlined from "@ant-design/icons/lib/icons/SettingOutlined";
+import {
+  StarOutlined,
+  LikeOutlined,
+  MessageOutlined,
+} from "@ant-design/icons/lib/icons";
 
-function MovieList() {
-  const [menuItemKey, setMenuItemKey] = React.useState<string>("movie");
+const IconText = ({ icon, text }) => (
+  <Space>
+    {React.createElement(icon)}
+    {text}
+  </Space>
+);
 
-  const handlMenuOnClick = (e: any) => {
-    setMenuItemKey(e.key);
-  };
+const getMovieRanking = async () => {
+  let movies: IMovieList[] = [];
+  await axios
+    .get(process.env.PUBLIC_URL + "/datas/movies.json")
+    .then((response) => {
+      movies = response.data.data;
+    });
 
-  const ranking: IMovieList[] = [
-    {
-      title: "스파이더맨:노 웨이 홈",
-      orignTitle: "Spider-Man",
-      bookRate: "35.0%",
-      releaseDate: "2021.12.15",
-    },
-    {
-      title: "듄",
-      orignTitle: "DUNE",
-      bookRate: "23.0%",
-      releaseDate: "2021.10.20",
-    },
-    {
-      title: "돈 룩 업",
-      orignTitle: "Don’t Look Up",
-      bookRate: "21.0%",
-      releaseDate: "2021.12.08",
-    },
-    {
-      title: "아멜리에",
-      orignTitle: "Amelie Of Montmartre",
-      bookRate: "11.0%",
-      releaseDate: "2021.12.15",
-    },
-    {
-      title: "엔칸토-마법의 세계",
-      orignTitle: "Encanto",
-      bookRate: "8.0%",
-      releaseDate: "2021.11.24",
-    },
-    {
-      title: "티탄",
-      orignTitle: "Titane",
-      bookRate: "6.0%",
-      releaseDate: "2021.12.09",
-    },
-    {
-      title: "프렌치 디스패치",
-      orignTitle: "The French Dispatch",
-      bookRate: "3.0%",
-      releaseDate: "2021.11.18",
-    },
-    {
-      title: "마이 뉴욕 다이어리",
-      orignTitle: "MyNewYorkDiary",
-      bookRate: "1.0%",
-      releaseDate: "2021.12.08",
-    },
-    {
-      title: "해피 아워",
-      orignTitle: "Happy Hour",
-      bookRate: "1.0%",
-      releaseDate: "2021.12.09",
-    },
-  ];
+  return movies;
+};
 
-  const IconText = ({ icon, text }) => (
-    <Space>
-      {React.createElement(icon)}
-      {text}
-    </Space>
-  );
+const MovieList = () => {
+  const [ranking, setRanking] = React.useState<IMovieList[]>([]);
+
+  React.useEffect(() => {
+    getMovieRanking().then((res) => {
+      setRanking(res);
+    });
+  }, []);
 
   return (
     <React.Fragment>
       <PageHeader title="Movie" subTitle="현재 상영작" />
-      <Row gutter={[0, 16]}>
+      <Row gutter={[8, 16]}>
         {ranking.map((item: IMovieList, index: number) => (
           <Col span={8} key={index}>
             <Card
@@ -122,7 +80,7 @@ function MovieList() {
               <Meta
                 title={item.title}
                 description={
-                  "예매율" + item.bookRate + " | " + "개봉일" + item.releaseDate
+                  "예매율" + item.bookRate + " | 개봉일" + item.releaseDate
                 }
               />
             </Card>
@@ -131,6 +89,6 @@ function MovieList() {
       </Row>
     </React.Fragment>
   );
-}
+};
 
 export default MovieList;
