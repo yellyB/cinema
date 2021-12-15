@@ -51,33 +51,59 @@ const getTimes = async () => {
   return theaters;
 };
 
+const steps = [
+  {
+    title: "영화/상영관 선택",
+    content: "First-content",
+  },
+  {
+    title: "좌석 선택",
+    content: "Second-content",
+  },
+  {
+    title: "결제",
+    content: "Last-content",
+  },
+];
+
 const Reservation = () => {
   const [titles, setTitles] = React.useState<string[]>([]);
   const [theaters, setTheaters] = React.useState<string[]>([]);
   const [times, setTimes] = React.useState<ITest[]>([]);
 
+  const [stepValue, setStepValue] = React.useState<number>(0);
+  const [selectedMovie, setSelectedMovie] = React.useState<string>("");
+  const [selectedTheater, setSelectedTheater] = React.useState<string>("");
+
+  const handleStepChange = (direction: string) => {
+    setStepValue(direction === "prev" ? stepValue - 1 : stepValue + 1);
+  };
+
+  const handleTabOnClick = (key: string, type: string) => {
+    if (type === "title") {
+      setSelectedMovie(key);
+    } else if (type === "theater") {
+      setSelectedTheater(key);
+    }
+  };
+
   React.useEffect(() => {
     getMovieTitles().then((res) => {
       setTitles(res);
+      setSelectedMovie(res[0]);
     });
     getTheaters().then((res) => {
       setTheaters(res);
+      setSelectedTheater(res[0]);
     });
     getTimes().then((res) => {
       setTimes(res);
       res.map((item: any) => {
         item["times"].map((i: any, index: number) => {
-          console.log(i.abc);
+          // console.log(i.abc);
         });
       });
     });
-
-    // test.map((item: any, index: number) => {
-    //   console.log(item.times);
-    //   item["times"].map((i: any) => {
-    //     console.log(i);
-    //   });
-    // });
   }, []);
 
   const test = [
@@ -115,19 +141,34 @@ const Reservation = () => {
       <Row>
         <Col span={24}>
           <PageHeader title="예매" subTitle="" />
+          {selectedMovie}/{selectedTheater}
         </Col>
       </Row>
       <Row>
         <Col span={24}>
-          <Progress />
+          <Progress
+            steps={steps}
+            step={stepValue}
+            handleStepChange={handleStepChange}
+          />
         </Col>
       </Row>
       <Row>
         <Col span={8}>
-          <SlidingTabs children={titles} />
+          <SlidingTabs
+            children={titles}
+            handleTabKeyChange={(key: string) => {
+              handleTabOnClick(key, "title");
+            }}
+          />
         </Col>
         <Col span={8}>
-          <SlidingTabs children={theaters} />
+          <SlidingTabs
+            children={theaters}
+            handleTabKeyChange={(key: string) => {
+              handleTabOnClick(key, "theater");
+            }}
+          />
         </Col>
         <Col span={8}>
           =======
@@ -146,6 +187,7 @@ const Reservation = () => {
               renderItem={(item) => <List.Item>{item}</List.Item>}
             />;
           })}
+          =======
         </Col>
       </Row>
     </React.Fragment>
