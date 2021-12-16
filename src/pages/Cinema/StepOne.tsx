@@ -1,12 +1,11 @@
 import React from "react";
 import axios from "axios";
-import { Col, List, Row, Tabs } from "antd";
+import { Col, List, Row, Tabs, Typography } from "antd";
 import { SlidingTabs } from "./SlidingTabs";
+import { HotTags } from "./HotTags";
+import { IMovieStartTimes, IMovieTimesEachRoom } from "../../common/interface";
 
-interface ITest {
-  name: string;
-  times: any[];
-}
+const { Text, Title } = Typography;
 
 const getMovieTitles = async () => {
   let movies: string[] = [];
@@ -35,7 +34,7 @@ const getTheaters = async () => {
 };
 
 const getTimes = async () => {
-  let theaters: ITest[];
+  let theaters: IMovieStartTimes[];
   await axios
     .get(process.env.PUBLIC_URL + "/datas/startTimes.json")
     .then((response) => {
@@ -53,12 +52,24 @@ const getTimes = async () => {
 const StepOne = (props: {
   setSelectedMovie: Function;
   setSelectedTheater: Function;
+  selectedTime: IMovieTimesEachRoom;
+  setSelectedTimes: Function;
 }) => {
-  const { setSelectedMovie, setSelectedTheater } = props;
+  const {
+    setSelectedMovie,
+    setSelectedTheater,
+    selectedTime,
+    setSelectedTimes,
+  } = props;
 
   const [titles, setTitles] = React.useState<string[]>([]);
   const [theaters, setTheaters] = React.useState<string[]>([]);
-  const [times, setTimes] = React.useState<ITest[]>([]);
+  const [times, setTimes] = React.useState<IMovieStartTimes[]>([]);
+
+  // const [selectedTime, setSelectedTimes] = React.useState<IMovieTimesEachRoom>({
+  //   room: "",
+  //   time: "",
+  // });
 
   const handleTabOnClick = (key: string, type: string) => {
     if (type === "title") {
@@ -67,6 +78,10 @@ const StepOne = (props: {
       setSelectedTheater(key);
     }
   };
+
+  // const handleTagOnClick = (room: string, time: string) => {
+  //   setSelectedTimes({ room: room, time: time });
+  // };
 
   React.useEffect(() => {
     getMovieTitles().then((res) => {
@@ -79,11 +94,6 @@ const StepOne = (props: {
     });
     getTimes().then((res) => {
       setTimes(res);
-      // res.map((item: any) => {
-      //   item["times"].map((i: any, index: number) => {
-      //     console.log(i.abc);
-      //   });
-      // });
     });
   }, []);
 
@@ -106,23 +116,28 @@ const StepOne = (props: {
         />
       </Col>
       <Col span={8}>
-        =======
-        {times.map((item: any, index: number) => {
-          // <div>
-          //   {item["times"].map((i: any) => {
-          //     <div>{i.name}fsdfdfs</div>;
-          //   })}
-          // </div>;
-
-          <List
-            header={<div>{index + 1}</div>}
-            footer={<div>Footer</div>}
-            bordered
-            dataSource={item}
-            renderItem={(item) => <List.Item>{item}</List.Item>}
-          />;
-        })}
-        =======
+        {times.map((item: IMovieStartTimes, index: number) => (
+          <Row key={index}>
+            <Col span={24}>
+              <Title level={5}>{item.name}</Title>
+            </Col>
+            <Col span={24}>
+              {item.times.map((timesEachRoom: any, idx: number) => (
+                <div key={idx}>
+                  {["1", "2", "3", "4", "5"].map((order: string, i: number) => (
+                    <HotTags
+                      key={i}
+                      room={item.name}
+                      time={timesEachRoom[order]}
+                      selectedTime={selectedTime}
+                      handleTagOnClick={setSelectedTimes}
+                    />
+                  ))}
+                </div>
+              ))}
+            </Col>
+          </Row>
+        ))}
       </Col>
     </Row>
   );
