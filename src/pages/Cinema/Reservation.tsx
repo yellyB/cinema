@@ -4,6 +4,7 @@ import { Progress } from "./Progress";
 import { StepOne } from "./StepOne";
 import { StepTwo } from "./StepTwo";
 import { StepThree } from "./StepThree";
+import { IMovieTimesEachRoom } from "../../common/interface";
 
 const steps = [
   {
@@ -25,40 +26,18 @@ const Reservation = () => {
 
   const [selectedMovie, setSelectedMovie] = React.useState<string>("");
   const [selectedTheater, setSelectedTheater] = React.useState<string>("");
+  const [selectedTime, setSelectedTimes] = React.useState<IMovieTimesEachRoom>({
+    room: "",
+    time: "",
+  });
 
   const handleStepChange = (direction: string) => {
     setStepValue(direction === "prev" ? stepValue - 1 : stepValue + 1);
   };
 
-  const test = [
-    {
-      name: "1관",
-      times: [
-        {
-          abc: "11:00",
-          def: "14:00",
-        },
-      ],
-    },
-    {
-      name: "2관",
-      times: [
-        {
-          abc: "11:00",
-          def: "14:00",
-        },
-      ],
-    },
-    {
-      name: "7관",
-      times: [
-        {
-          abc: "11:00",
-          def: "14:00",
-        },
-      ],
-    },
-  ];
+  const handleTagOnClick = (room: string, time: string) => {
+    setSelectedTimes({ room: room, time: time });
+  };
 
   return (
     <React.Fragment>
@@ -66,7 +45,7 @@ const Reservation = () => {
         <Col span={24}>
           <PageHeader
             title={selectedMovie + "/" + selectedTheater}
-            subTitle=""
+            subTitle={selectedTime.room + " " + selectedTime.time}
           />
         </Col>
       </Row>
@@ -84,6 +63,8 @@ const Reservation = () => {
           <StepOne
             setSelectedMovie={setSelectedMovie}
             setSelectedTheater={setSelectedTheater}
+            selectedTime={selectedTime}
+            setSelectedTimes={handleTagOnClick}
           />
         )}
       </Card>

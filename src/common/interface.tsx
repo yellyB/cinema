@@ -6,6 +6,14 @@ export interface IMovieList {
   releaseDate: string;
 }
 
+export interface IMovieStartTimes {
+  name: string;
+  times: string[];
+}
+export interface IMovieTimesEachRoom {
+  room: string;
+  time: string;
+}
 export interface IComment {
   user: string;
   movieKey: number;
