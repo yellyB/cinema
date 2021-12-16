@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Col, List, Row, Tabs, Typography } from "antd";
+import { Row, Col, Card, Tabs, Typography } from "antd";
 import { SlidingTabs } from "./SlidingTabs";
 import { HotTags } from "./HotTags";
 import { IMovieStartTimes, IMovieTimesEachRoom } from "../../common/interface";
@@ -39,11 +39,6 @@ const getTimes = async () => {
     .get(process.env.PUBLIC_URL + "/datas/startTimes.json")
     .then((response) => {
       theaters = response.data.data;
-      // datas.map((item: any, index: number) => {
-      //   item["times"].map((i: any) => {
-      //     console.log(i);
-      //   });
-      // });
     });
 
   return theaters;
@@ -66,11 +61,6 @@ const StepOne = (props: {
   const [theaters, setTheaters] = React.useState<string[]>([]);
   const [times, setTimes] = React.useState<IMovieStartTimes[]>([]);
 
-  // const [selectedTime, setSelectedTimes] = React.useState<IMovieTimesEachRoom>({
-  //   room: "",
-  //   time: "",
-  // });
-
   const handleTabOnClick = (key: string, type: string) => {
     if (type === "title") {
       setSelectedMovie(key);
@@ -78,10 +68,6 @@ const StepOne = (props: {
       setSelectedTheater(key);
     }
   };
-
-  // const handleTagOnClick = (room: string, time: string) => {
-  //   setSelectedTimes({ room: room, time: time });
-  // };
 
   React.useEffect(() => {
     getMovieTitles().then((res) => {
@@ -98,48 +84,55 @@ const StepOne = (props: {
   }, []);
 
   return (
-    <Row>
-      <Col span={8}>
-        <SlidingTabs
-          children={titles}
-          handleTabKeyChange={(key: string) => {
-            handleTabOnClick(key, "title");
-          }}
-        />
-      </Col>
-      <Col span={8}>
-        <SlidingTabs
-          children={theaters}
-          handleTabKeyChange={(key: string) => {
-            handleTabOnClick(key, "theater");
-          }}
-        />
-      </Col>
-      <Col span={8}>
-        {times.map((item: IMovieStartTimes, index: number) => (
-          <Row key={index}>
-            <Col span={24}>
-              <Title level={5}>{item.name}</Title>
-            </Col>
-            <Col span={24}>
-              {item.times.map((timesEachRoom: any, idx: number) => (
-                <div key={idx}>
-                  {["1", "2", "3", "4", "5"].map((order: string, i: number) => (
-                    <HotTags
-                      key={i}
-                      room={item.name}
-                      time={timesEachRoom[order]}
-                      selectedTime={selectedTime}
-                      handleTagOnClick={setSelectedTimes}
-                    />
+    <Card style={{ height: 500 }}>
+      <Row>
+        <Col span={8}>
+          <SlidingTabs
+            children={titles}
+            handleTabKeyChange={(key: string) => {
+              handleTabOnClick(key, "title");
+            }}
+          />
+        </Col>
+        <Col span={8}>
+          <SlidingTabs
+            children={theaters}
+            handleTabKeyChange={(key: string) => {
+              handleTabOnClick(key, "theater");
+            }}
+          />
+        </Col>
+        <Col span={8}>
+          {times.map((item: IMovieStartTimes, index: number) => (
+            <>
+              <Row key={index}>
+                <Col span={24}>
+                  <Title level={5}>{item.name}</Title>
+                </Col>
+                <Col span={24}>
+                  {item.times.map((timesEachRoom: any, idx: number) => (
+                    <div key={idx}>
+                      {["1", "2", "3", "4", "5"].map(
+                        (order: string, i: number) => (
+                          <HotTags
+                            key={i}
+                            room={item.name}
+                            time={timesEachRoom[order]}
+                            selectedTime={selectedTime}
+                            handleTagOnClick={setSelectedTimes}
+                          />
+                        )
+                      )}
+                    </div>
                   ))}
-                </div>
-              ))}
-            </Col>
-          </Row>
-        ))}
-      </Col>
-    </Row>
+                </Col>
+              </Row>
+              <br />
+            </>
+          ))}
+        </Col>
+      </Row>
+    </Card>
   );
 };
 

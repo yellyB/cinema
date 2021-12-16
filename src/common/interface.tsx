@@ -15,9 +15,10 @@ export interface IMovieTimesEachRoom {
   time: string;
 }
 export interface IComment {
-  user: string;
+  writer: string;
   movieKey: number;
   content: string;
+  rate: number;
   like: number;
   dislike: number;
 }

@@ -3,6 +3,10 @@ import { Tag } from "antd";
 
 const { CheckableTag } = Tag;
 
+const notSelectedStyle = {
+  background: "#eee",
+};
+
 const HotTags = (props: {
   room: string;
   time: string;
@@ -11,17 +15,8 @@ const HotTags = (props: {
 }) => {
   const { room, time, selectedTime, handleTagOnClick } = props;
 
-  const [state, setState] = React.useState(["Books"]);
-
   const handleChange = (e: boolean) => {
-    console.log("room:", room, "time:", time);
     handleTagOnClick(room, time);
-    // const selectedTags = state;
-    // const nextSelectedTags = checked
-    //   ? [...selectedTags, tag]
-    //   : selectedTags.filter((t) => t !== tag);
-    // console.log("You are interested in: ", nextSelectedTags);
-    // setState(nextSelectedTags);
   };
 
   return (
@@ -29,6 +24,11 @@ const HotTags = (props: {
       <CheckableTag
         checked={selectedTime.room === room && selectedTime.time === time}
         onChange={handleChange}
+        style={
+          selectedTime.room === room && selectedTime.time === time
+            ? {}
+            : notSelectedStyle
+        }
       >
         {time}
       </CheckableTag>

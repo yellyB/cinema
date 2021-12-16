@@ -15,34 +15,37 @@ import {
   DislikeFilled,
   LikeFilled,
 } from "@ant-design/icons";
+import { IComment } from "../../common/interface";
 
 const { Title, Text } = Typography;
 
-const Comments = () => {
-  const [likes, setLikes] = React.useState(0);
-  const [dislikes, setDislikes] = React.useState(0);
+const Comments = (props: { item: IComment }) => {
+  const { writer, movieKey, content, rate, like, dislike } = props.item;
+
+  const [likes, setLikes] = React.useState(like);
+  const [dislikes, setDislikes] = React.useState(dislike);
   const [action, setAction] = React.useState(null);
 
-  const like = () => {
-    setLikes(1);
-    setDislikes(0);
+  const handlelike = () => {
+    setLikes(like + 1);
+    setDislikes(dislike);
     setAction("liked");
   };
-  const dislike = () => {
-    setLikes(0);
-    setDislikes(1);
+  const handledislike = () => {
+    setLikes(like);
+    setDislikes(dislike + 1);
     setAction("disliked");
   };
 
   const actions = [
     <Tooltip key="comment-basic-like" title="Like">
-      <span onClick={like}>
+      <span onClick={handlelike}>
         {createElement(action === "liked" ? LikeFilled : LikeOutlined)}
         <span className="comment-action">{likes}</span>
       </span>
     </Tooltip>,
     <Tooltip key="comment-basic-dislike" title="Dislike">
-      <span onClick={dislike}>
+      <span onClick={handledislike}>
         {React.createElement(
           action === "disliked" ? DislikeFilled : DislikeOutlined
         )}
@@ -58,31 +61,26 @@ const Comments = () => {
         actions={actions}
         author={
           <>
-            <Rate disabled defaultValue={2} />
+            <Rate disabled value={rate} />
           </>
         }
         avatar={
           <>
-            <Row>
-              <Col span={16} offset={8}>
+            <Row justify="center">
+              <Col span={24}>
                 <Avatar
                   src="https://joeschmoe.io/api/v1/random"
                   alt="profile"
                 />
               </Col>
-              <Col span={16} offset={8}>
-                작성자
-              </Col>
+              <Col span={24}>{writer}</Col>
             </Row>
           </>
         }
         content={
           <p>
-            <Title level={4}>영화이름</Title>
-            <Text>
-              Ant Design, a design language for background applications, is
-              refined by Ant UED Team.
-            </Text>
+            <Title level={4}>영화 키{movieKey}</Title>
+            <Text>{content}</Text>
           </p>
         }
       ></Comment>
