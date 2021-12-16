@@ -17,13 +17,11 @@ const SlidingTabs = (props: {
     <div>
       <Tabs
         tabPosition={"left"}
-        style={{ height: 220 }}
+        style={{ height: 450 }}
         onTabClick={handleTabOnClick}
       >
         {children.map((item: string, index: number) => (
-          <TabPane tab={item} key={item} disabled={index === 28}>
-            {item}
-          </TabPane>
+          <TabPane tab={item} key={item} disabled={index === 28} />
         ))}
       </Tabs>
     </div>

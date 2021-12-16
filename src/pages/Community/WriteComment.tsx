@@ -17,7 +17,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
         onClick={onSubmit}
         type="primary"
       >
-        리뷰 추가
+        리뷰 남기기
       </Button>
     </Form.Item>
   </>

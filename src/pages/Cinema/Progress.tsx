@@ -21,7 +21,7 @@ const Progress = (props: {
           <Step key={item.title} title={item.title} />
         ))}
       </Steps>
-      <div className="steps-content">{steps[step].content}</div>
+      {/* <div className="steps-content">{steps[step].content}</div> */}
       <div className="steps-action">
         {step < steps.length - 1 && (
           <Button type="primary" onClick={() => handleStepOnClick("next")}>

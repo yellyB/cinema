@@ -12,7 +12,6 @@ function App() {
   const [menuItemKey, setMenuItemKey] = React.useState<string>("cinema");
 
   const handleMenuItemOnClick = (e: any) => {
-    console.log(e.key);
     setMenuItemKey(e.key);
   };
 
