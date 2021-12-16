@@ -3,12 +3,22 @@ import { Form, Input, Button, Checkbox } from "antd";
 
 const Login = () => {
   const onFinish = (values: any) => {
-    console.log("Success:", values);
+    const { username, password, remember } = values;
+    global.localStorage.setItem("userName", username);
+    global.localStorage.setItem("remember", remember);
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+
+  const isRemember = () => {
+    return global.localStorage.getItem("remember") === "true" ? true : false;
+  };
+
+  React.useEffect(() => {
+    console.log(isRemember());
+  }, []);
 
   return (
     <React.Fragment>
