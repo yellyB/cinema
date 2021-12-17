@@ -69,7 +69,12 @@ const Comments = (props: { item: IComment }) => {
             <Row justify="center">
               <Col span={24}>
                 <Avatar
-                  src="https://joeschmoe.io/api/v1/random"
+                  src={
+                    process.env.PUBLIC_URL +
+                    "/images/profiles/" +
+                    Math.floor(Math.random() * 16) +
+                    ".svg"
+                  }
                   alt="profile"
                 />
               </Col>

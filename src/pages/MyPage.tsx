@@ -25,18 +25,22 @@ function MyPage() {
         selectedKeys={[menuItemKey]}
         mode="horizontal"
       >
-        <SubMenu key="1" icon={<SettingOutlined />} title="내 정보">
+        {/* <SubMenu key="1" icon={<SettingOutlined />} title="내 정보">
           <Menu.ItemGroup title="Item 1">
             <Menu.Item key="myInfo">기본정보</Menu.Item>
             <Menu.Item key="point">포인트</Menu.Item>
           </Menu.ItemGroup>
-        </SubMenu>
+        </SubMenu> */}
+
+        <Menu.Item key="myInfo" icon={<AppstoreOutlined />}>
+          내 정보
+        </Menu.Item>
         <Menu.Item key="reserveHistory" icon={<AppstoreOutlined />}>
           예매이력
         </Menu.Item>
-        <Menu.Item key="editInfo" icon={<MailOutlined />}>
+        {/* <Menu.Item key="editInfo" icon={<MailOutlined />}>
           정보수정
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
       {menuItemKey === "myInfo" && <MyInfo />}
       {menuItemKey === "point" && <Point />}

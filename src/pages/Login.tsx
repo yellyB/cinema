@@ -1,11 +1,14 @@
 import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 
-const Login = () => {
+const Login = (props: { setMenuItemKey: Function }) => {
+  const { setMenuItemKey } = props;
+
   const onFinish = (values: any) => {
     const { username, password, remember } = values;
     global.localStorage.setItem("userName", username);
     global.localStorage.setItem("remember", remember);
+    setMenuItemKey("cinema");
   };
 
   const onFinishFailed = (errorInfo: any) => {
