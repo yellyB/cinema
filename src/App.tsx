@@ -19,10 +19,25 @@ function App() {
     setMenuItemKey(e.key);
   };
 
+  const handleLogoutOnClick = () => {
+    global.localStorage.removeItem("userName");
+    global.localStorage.removeItem("password");
+
+    setMenuItemKey("cinema");
+  };
+
+  const handleLoginOnClick = () => {
+    setMenuItemKey("login");
+  };
+
   const dropDownMenu = (
     <Menu onClick={handleDropDownOnClick}>
       <Menu.Item key="login" icon={<UserOutlined />}>
-        로그인/로그아웃
+        {global.localStorage.getItem("userName") ? (
+          <span onClick={handleLogoutOnClick}>로그아웃</span>
+        ) : (
+          <span onClick={handleLoginOnClick}>로그인</span>
+        )}
       </Menu.Item>
       <Menu.Item key="presentReserve" icon={<UserOutlined />}>
         예매현황
@@ -77,7 +92,9 @@ function App() {
             {menuItemKey === "cinema" && <Cinema />}
             {menuItemKey === "community" && <Community />}
             {menuItemKey === "mypage" && <MyPage />}
-            {menuItemKey === "login" && <Login />}
+            {menuItemKey === "login" && (
+              <Login setMenuItemKey={setMenuItemKey} />
+            )}
             {menuItemKey === "presentReserve" && <PresentReserve />}
           </Col>
         </Row>

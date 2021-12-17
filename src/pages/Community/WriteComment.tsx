@@ -45,7 +45,11 @@ function WriteComment() {
           state.comments,
           {
             author: "Han Solo",
-            avatar: "https://joeschmoe.io/api/v1/random",
+            avatar:
+              process.env.PUBLIC_URL +
+              +"/images/profiles/" +
+              Math.floor(Math.random() * 17) +
+              ".sgv",
             content: <p>{state.value}</p>,
             datetime: moment().fromNow(),
           },

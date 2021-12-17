@@ -15,12 +15,14 @@ const StepTwo = () => {
 
   return (
     <>
+      성인
       <InputNumber
         min={limit.min}
         max={limit.max}
         value={adultCount}
         onChange={handleAdultOnChange}
       />
+      청소년
       <InputNumber
         min={limit.min}
         max={limit.max}
