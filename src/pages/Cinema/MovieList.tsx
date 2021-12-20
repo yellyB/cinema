@@ -56,7 +56,7 @@ const MovieList = () => {
                   src={
                     process.env.PUBLIC_URL +
                     "/images/movies/" +
-                    item.orignTitle +
+                    item.title +
                     ".jpg"
                   }
                 />
