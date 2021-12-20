@@ -1,74 +1,84 @@
 {
   "data": [
     {
-      "user": "jenny",
+      "writer": "jenny",
       "movieKey": 0,
-      "content": "내용",
-      "like": 2,
+      "content": "스파이더맨 팬들에게 주는 선물. 영화를 보는 내내 벅차고 행복했다.",
+      "rate": 4,
+      "like": 45,
       "dislike": 0
     },
     {
-      "user": "bestMan",
+      "writer": "bestMan",
       "movieKey": 1,
-      "content": "내용",
-      "like": 2,
+      "content": "영화관이 존재하는 이유",
+      "rate": 5,
+      "like": 122,
       "dislike": 0
     },
     {
-      "user": "iwillbeback",
+      "writer": "iwillbeback",
       "movieKey": 0,
-      "content": "내용",
+      "content": "그래서 피터파커가 누구야?",
+      "rate": 3,
       "like": 15,
       "dislike": 1
     },
     {
-      "user": "xxhoju",
+      "writer": "xxhoju",
       "movieKey": 4,
-      "content": "내용",
+      "content": "작품성도 훌륭한 것 같고 영상미도 좋아요. 하지만 졸려웠어요. 좋아하는 감독 영화라 기대가 컸나봐요.",
+      "rate": 2,
+      "like": 2,
+      "dislike": 1
+    },
+    {
+      "writer": "연라비",
+      "movieKey": 6,
+      "content": "연출 보는 재미밖엔",
+      "rate": 2,
+      "like": 3,
+      "dislike": 2
+    },
+    {
+      "writer": "주니모",
+      "movieKey": 3,
+      "content": "감성적인 영화 좋아하고 평점 후하게 주는 편이지만 이 영화는 너무 지루하고 답답하고 산만한 느낌이라 힘들게 봤다. 나와는 안 맞는 영화였음",
+      "rate": 1,
       "like": 2,
       "dislike": 0
     },
     {
-      "user": "연라비",
-      "movieKey": 6,
-      "content": "내용",
-      "like": 7,
-      "dislike": 0
-    },
-    {
-      "user": "주니모",
-      "movieKey": 3,
-      "content": "내용",
-      "like": 44,
-      "dislike": 0
-    },
-    {
-      "user": "shane",
-      "movieKey": 5,
-      "content": "내용",
+      "writer": "shane",
+      "movieKey": 2,
+      "content": " 광활함에 압도된다.",
+      "rate": 5,
       "like": 25,
       "dislike": 0
     },
     {
-      "user": "loxittang",
+      "writer": "loxittang",
       "movieKey": 5,
-      "content": "내용",
-      "like": 8,
+      "content": "상상력의 한계는 어디까지일까? 새롭고 독특했던 영화",
+      "rate": 5,
+      "like": 68,
       "dislike": 0
     },
     {
-      "user": "crew",
-      "movie": 3,
-      "content": "내용",
-      "like": 1,
+      "writer": "crew",
+      "movieKey": 3,
+      "content": "진짜 내 최애영화… 죽기 전에 마지막으로 볼 영화를 고른다면 난 바로 이 영화를 고를 듯! 연출, 연기, 스토리, 영상미, 음악 등 모든 요소가 황홀함",
+      "rate": 4,
+      "like": 34,
       "dislike": 0
     },
     {
-      "user": "열두시십분",
+      "writer": "열두시십분",
       "movieKey": 7,
-      "content": "내용",
+      "content": "재미가 없어서 안타까웠다.",
+      "rate": 2,
       "like": 0,
-      "dislike": 0
+      "dislike": 4
     }
   ]
 }
