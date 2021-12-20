@@ -7,7 +7,7 @@ const notSelectedStyle = {
   background: "#eee",
 };
 
-const HotTags = (props: {
+const TimeTag = (props: {
   room: string;
   time: string;
   selectedTime: any;
@@ -36,4 +36,4 @@ const HotTags = (props: {
   );
 };
 
-export { HotTags };
+export { TimeTag };

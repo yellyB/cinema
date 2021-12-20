@@ -1,11 +1,11 @@
 import React from "react";
 import axios from "axios";
-import { Row, Col, Card, Tabs, Typography } from "antd";
+import { Row, Col, Typography } from "antd";
 import { SlidingTabs } from "./SlidingTabs";
-import { HotTags } from "./HotTags";
+import { TimeTag } from "./TimeTag";
 import { IMovieStartTimes, IMovieTimesEachRoom } from "../../common/interface";
 
-const { Text, Title } = Typography;
+const { Title } = Typography;
 
 const getMovieTitles = async () => {
   let movies: string[] = [];
@@ -84,55 +84,53 @@ const StepOne = (props: {
   }, []);
 
   return (
-    <Card style={{ height: 500 }}>
-      <Row>
-        <Col span={8}>
-          <SlidingTabs
-            children={titles}
-            handleTabKeyChange={(key: string) => {
-              handleTabOnClick(key, "title");
-            }}
-          />
-        </Col>
-        <Col span={8}>
-          <SlidingTabs
-            children={theaters}
-            handleTabKeyChange={(key: string) => {
-              handleTabOnClick(key, "theater");
-            }}
-          />
-        </Col>
-        <Col span={8}>
-          {times.map((item: IMovieStartTimes, index: number) => (
-            <>
-              <Row key={index}>
-                <Col span={24}>
-                  <Title level={5}>{item.name}</Title>
-                </Col>
-                <Col span={24}>
-                  {item.times.map((timesEachRoom: any, idx: number) => (
-                    <div key={idx}>
-                      {["1", "2", "3", "4", "5"].map(
-                        (order: string, i: number) => (
-                          <HotTags
-                            key={i}
-                            room={item.name}
-                            time={timesEachRoom[order]}
-                            selectedTime={selectedTime}
-                            handleTagOnClick={setSelectedTimes}
-                          />
-                        )
-                      )}
-                    </div>
-                  ))}
-                </Col>
-              </Row>
-              <br />
-            </>
-          ))}
-        </Col>
-      </Row>
-    </Card>
+    <Row>
+      <Col span={7}>
+        <SlidingTabs
+          children={titles}
+          handleTabKeyChange={(key: string) => {
+            handleTabOnClick(key, "title");
+          }}
+        />
+      </Col>
+      <Col span={6}>
+        <SlidingTabs
+          children={theaters}
+          handleTabKeyChange={(key: string) => {
+            handleTabOnClick(key, "theater");
+          }}
+        />
+      </Col>
+      <Col span={11}>
+        {times.map((item: IMovieStartTimes, index: number) => (
+          <>
+            <Row key={index}>
+              <Col span={24}>
+                <Title level={5}>{item.name}</Title>
+              </Col>
+              <Col span={24}>
+                {item.times.map((timesEachRoom: any, idx: number) => (
+                  <div key={idx}>
+                    {["1", "2", "3", "4", "5"].map(
+                      (order: string, i: number) => (
+                        <TimeTag
+                          key={i}
+                          room={item.name}
+                          time={timesEachRoom[order]}
+                          selectedTime={selectedTime}
+                          handleTagOnClick={setSelectedTimes}
+                        />
+                      )
+                    )}
+                  </div>
+                ))}
+              </Col>
+            </Row>
+            <br />
+          </>
+        ))}
+      </Col>
+    </Row>
   );
 };
 

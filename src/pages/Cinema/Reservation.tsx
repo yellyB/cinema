@@ -1,10 +1,22 @@
 import React from "react";
-import { Card, Col, List, PageHeader, Row, Tabs } from "antd";
-import { Progress } from "./Progress";
+import {
+  Typography,
+  Card,
+  Col,
+  List,
+  message,
+  PageHeader,
+  Row,
+  Tabs,
+} from "antd";
+import { Progress, ProgressBtn } from "./Progress";
 import { StepOne } from "./StepOne";
 import { StepTwo } from "./StepTwo";
 import { StepThree } from "./StepThree";
 import { IMovieTimesEachRoom } from "../../common/interface";
+import { SideCard } from "./SideCard";
+
+const { Title } = Typography;
 
 const steps = [
   {
@@ -31,7 +43,28 @@ const Reservation = () => {
     time: "",
   });
 
+  const [selectedSeat, setSelectedSeat] = React.useState<any>({
+    row: "",
+    col: 0,
+  });
+
   const handleStepChange = (direction: string) => {
+    if (
+      stepValue === 0 &&
+      (selectedMovie === "" ||
+        selectedTheater === "" ||
+        selectedTime.room === "")
+    ) {
+      message.warning("예매 정보를 선택해주세요.");
+      return;
+    }
+    if (
+      stepValue === 1 &&
+      (selectedSeat.row === "" || selectedSeat.col === 0)
+    ) {
+      message.warning("좌석을 선택해주세요.");
+      return;
+    }
     setStepValue(direction === "prev" ? stepValue - 1 : stepValue + 1);
   };
 
@@ -41,33 +74,55 @@ const Reservation = () => {
 
   return (
     <React.Fragment>
-      <Row>
-        <Col span={24}>
-          <PageHeader
-            title={selectedMovie + "/" + selectedTheater}
-            subTitle={selectedTime.room + " " + selectedTime.time}
-          />
+      <Row style={{ marginTop: 30 }}>
+        <Col span={18}>
+          <Progress steps={steps} step={stepValue} />
         </Col>
       </Row>
       <Row>
-        <Col span={24}>
-          <Progress
-            steps={steps}
-            step={stepValue}
-            handleStepChange={handleStepChange}
-          />
+        <Col span={17}>
+          <Card className="reserve_card">
+            {stepValue === 0 && (
+              <StepOne
+                setSelectedMovie={setSelectedMovie}
+                setSelectedTheater={setSelectedTheater}
+                selectedTime={selectedTime}
+                setSelectedTimes={handleTagOnClick}
+              />
+            )}
+            {stepValue === 1 && (
+              <StepTwo
+                selectedSeat={selectedSeat}
+                setSelectedSeat={setSelectedSeat}
+              />
+            )}
+            {stepValue === 2 && (
+              <StepThree
+                selectedMovie={selectedMovie}
+                selectedTheater={selectedTheater}
+                selectedTime={selectedTime}
+                selectedSeat={selectedSeat}
+              />
+            )}
+          </Card>
+        </Col>
+        <Col span={7}>
+          <Card style={{ margin: "15px", background: "#cfcfcf" }}>
+            <SideCard
+              selectedMovie={selectedMovie}
+              selectedTheater={selectedTheater}
+              selectedTime={selectedTime}
+              selectedSeat={selectedSeat}
+            />
+          </Card>
         </Col>
       </Row>
-      {stepValue === 0 && (
-        <StepOne
-          setSelectedMovie={setSelectedMovie}
-          setSelectedTheater={setSelectedTheater}
-          selectedTime={selectedTime}
-          setSelectedTimes={handleTagOnClick}
-        />
-      )}
-      {stepValue === 1 && <StepTwo />}
-      {stepValue === 2 && <StepThree />}
+
+      <ProgressBtn
+        steps={steps}
+        step={stepValue}
+        handleStepChange={handleStepChange}
+      />
     </React.Fragment>
   );
 };
