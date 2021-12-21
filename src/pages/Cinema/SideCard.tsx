@@ -65,7 +65,7 @@ const SideCard = (props: {
         </Row>
       </Card>
       <Title level={2}>
-        총 금액 : {selectedSeat.row === "" ? "0" : "10,000"} 원
+        총 금액: {selectedSeat.row === "" ? "0" : "10,000"} 원
       </Title>
     </React.Fragment>
   );
