@@ -3,7 +3,7 @@ import axios from "axios";
 import WriteComment from "./WriteComment";
 import Comments from "./Comments";
 import { IComment } from "../../common/interface";
-import { List } from "antd";
+import { Card, List, Row } from "antd";
 
 const getComments = async () => {
   let comments: IComment[] = [];
@@ -39,12 +39,17 @@ const getComments = async () => {
 
 const CommentList = ({ comments }) => (
   <>
-    <List
-      dataSource={comments}
-      header={`${comments.length} ${comments.length > 1 ? "replies" : "reply"}`}
-      itemLayout="horizontal"
-      renderItem={(props: any) => <Comments item={props} />}
-    />
+    <Row justify="center">
+      <List
+        dataSource={comments}
+        header={`${comments.length} ${
+          comments.length > 1 ? "replies" : "reply"
+        }`}
+        itemLayout="horizontal"
+        renderItem={(props: any) => <Comments item={props} />}
+        style={{ maxWidth: "60%" }}
+      />
+    </Row>
   </>
 );
 
@@ -63,8 +68,10 @@ const Review = () => {
 
   return (
     <React.Fragment>
-      {list.length > 0 && <CommentList comments={list} />}
-      <WriteComment addComment={handleAddComment} />
+      <Card>{list.length > 0 && <CommentList comments={list} />}</Card>
+      <Card>
+        <WriteComment addComment={handleAddComment} />
+      </Card>
     </React.Fragment>
   );
 };

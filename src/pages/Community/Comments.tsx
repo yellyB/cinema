@@ -8,6 +8,7 @@ import {
   Typography,
   Tooltip,
   Card,
+  Button,
 } from "antd";
 import {
   DislikeOutlined,
@@ -54,43 +55,44 @@ const Comments = (props: { item: IComment }) => {
       </span>
     </Tooltip>,
     <span key="comment-basic-reply-to">Reply to</span>,
+    // <Col
+    //   key="comment-delete"
+    //   hidden={localStorage.getItem("userName") !== writer}
+    // >
+    //   <Button danger type="text" onClick={handleDeleteOnClick}>
+    //     삭제
+    //   </Button>
+    // </Col>,
   ];
 
   return (
-    <Card>
-      <Comment
-        actions={actions}
-        author={
-          <>
-            <Rate disabled value={rate} />
-          </>
-        }
-        avatar={
-          <>
-            <Row justify="center">
-              <Col span={24}>
-                <Avatar
-                  src={
-                    process.env.PUBLIC_URL +
-                    "/images/profiles/" +
-                    profileIdx +
-                    ".svg"
-                  }
-                  alt="profile"
-                />
-              </Col>
-              <Col span={24}>{writer}</Col>
-            </Row>
-          </>
-        }
-        content={
-          <p>
-            <Title level={4}>영화 키{movieKey}</Title>
-            <Text>{content}</Text>
-          </p>
-        }
-      ></Comment>
-    </Card>
+    <Comment
+      actions={actions}
+      author={writer}
+      avatar={
+        <Avatar
+          src={
+            process.env.PUBLIC_URL + "/images/profiles/" + profileIdx + ".svg"
+          }
+          alt="profile"
+        />
+      }
+      content={
+        <p>
+          <Row>
+            <Col span={24}>
+              <Rate disabled value={rate} />
+            </Col>
+            <Col span={24} style={{ paddingTop: 5, border: "0px solid red" }}>
+              <Title level={4}>영화 키{movieKey}</Title>
+            </Col>
+            <Col span={24}>
+              <Text>{content}</Text>
+            </Col>
+          </Row>
+        </p>
+      }
+    ></Comment>
   );
 };
 
