@@ -25,46 +25,35 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 
 const WriteComment = (props: { addComment: Function }) => {
   const { addComment } = props;
-  const [state, setState] = React.useState<any>({
-    comments: [],
-    submitting: false,
-    value: "",
-  });
+
+  const [submitting, setSubmitting] = React.useState<boolean>(false);
+  const [value, setValue] = React.useState<string>("");
 
   const handleSubmit = () => {
-    if (!state.value) {
+    if (!value) {
       return;
     }
 
-    setState({ submitting: true, ...state });
+    setSubmitting(true);
 
     setTimeout(() => {
-      setState({
-        submitting: false,
-        value: "",
-        comments: [
-          state.comments,
-          {
-            author: "Han Solo",
-            avatar:
-              process.env.PUBLIC_URL +
-              +"/images/profiles/" +
-              Math.floor(Math.random() * 17) +
-              ".sgv",
-            content: <p>{state.value}</p>,
-            datetime: moment().fromNow(),
-          },
-        ],
+      setSubmitting(false);
+      setValue("");
+
+      addComment({
+        writer: "writer",
+        movieKey: 2,
+        content: value,
+        rate: 5,
+        like: 0,
+        dislike: 0,
+        profileIdx: Math.floor(Math.random() * 16),
       });
-      console.log(state);
-      addComment(state.value);
     }, 1000);
   };
 
   const handleChange = (e: any) => {
-    setState({
-      value: e.target.value,
-    });
+    setValue(e.target.value);
   };
 
   return (
@@ -78,8 +67,8 @@ const WriteComment = (props: { addComment: Function }) => {
           <Editor
             onChange={handleChange}
             onSubmit={handleSubmit}
-            submitting={state.submitting}
-            value={state.value}
+            submitting={submitting}
+            value={value}
           />
         }
       />
