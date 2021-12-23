@@ -20,8 +20,5 @@ export interface IComment {
   rate: number;
   like: number;
   dislike: number;
-}
-
-export interface IComments extends IComment {
   profileIdx: number;
 }

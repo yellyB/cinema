@@ -23,7 +23,8 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
   </>
 );
 
-function WriteComment() {
+const WriteComment = (props: { addComment: Function }) => {
+  const { addComment } = props;
   const [state, setState] = React.useState<any>({
     comments: [],
     submitting: false,
@@ -55,6 +56,8 @@ function WriteComment() {
           },
         ],
       });
+      console.log(state);
+      addComment(state.value);
     }, 1000);
   };
 
@@ -82,6 +85,6 @@ function WriteComment() {
       />
     </React.Fragment>
   );
-}
+};
 
 export default WriteComment;
