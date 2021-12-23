@@ -1,9 +1,9 @@
 import React from "react";
-import { Comment, Avatar, Form, Button, List, Input, Rate } from "antd";
-import moment from "moment";
+import { Comment, Avatar, Form, Button, Input, Select } from "antd";
 import CommentRate from "./CommentRate";
 
 const { TextArea } = Input;
+const { Option } = Select;
 
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
   <>
@@ -23,65 +23,74 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
   </>
 );
 
-function WriteComment() {
-  const [state, setState] = React.useState<any>({
-    comments: [],
-    submitting: false,
-    value: "",
-  });
+const WriteComment = (props: { addComment: Function }) => {
+  const { addComment } = props;
+
+  const [submitting, setSubmitting] = React.useState<boolean>(false);
+  const [value, setValue] = React.useState<string>("");
+  const [rate, setRate] = React.useState<number>(5);
+  const [profileIdx] = React.useState<number>(Math.floor(Math.random() * 16));
 
   const handleSubmit = () => {
-    if (!state.value) {
+    if (!value) {
       return;
     }
 
-    setState({ submitting: true, ...state });
+    setSubmitting(true);
 
     setTimeout(() => {
-      setState({
-        submitting: false,
-        value: "",
-        comments: [
-          state.comments,
-          {
-            author: "Han Solo",
-            avatar:
-              process.env.PUBLIC_URL +
-              +"/images/profiles/" +
-              Math.floor(Math.random() * 17) +
-              ".sgv",
-            content: <p>{state.value}</p>,
-            datetime: moment().fromNow(),
-          },
-        ],
+      setSubmitting(false);
+      setValue("");
+
+      addComment({
+        writer: localStorage.getItem("userName")
+          ? localStorage.getItem("userName")
+          : "guest",
+        movieKey: 2,
+        content: value,
+        rate: rate,
+        like: 0,
+        dislike: 0,
+        profileIdx: profileIdx,
       });
     }, 1000);
   };
 
   const handleChange = (e: any) => {
-    setState({
-      value: e.target.value,
-    });
+    setValue(e.target.value);
   };
 
   return (
     <React.Fragment>
-      <CommentRate />
+      <Select defaultValue="" style={{ width: 120 }}>
+        <Option value="">영화 선택</Option>
+      </Select>
+      <CommentRate rate={rate} setRate={setRate} />
       <Comment
         avatar={
-          <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
+          <>
+            <Avatar
+              src={
+                process.env.PUBLIC_URL +
+                "/images/profiles/" +
+                profileIdx +
+                ".svg"
+              }
+              alt="profile"
+            />
+          </>
         }
         content={
           <Editor
             onChange={handleChange}
             onSubmit={handleSubmit}
-            submitting={state.submitting}
-            value={state.value}
+            submitting={submitting}
+            value={value}
           />
         }
       />
     </React.Fragment>
   );
-}
+};
 
 export default WriteComment;

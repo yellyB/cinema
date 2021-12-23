@@ -20,4 +20,13 @@ export interface IComment {
   rate: number;
   like: number;
   dislike: number;
+  profileIdx: number;
+}
+
+export interface IBoard {
+  index: number;
+  title: string;
+  writer: string;
+  content: string;
+  viewCount: number;
 }
