@@ -20,7 +20,8 @@ import { IComment } from "../../common/interface";
 const { Title, Text } = Typography;
 
 const Comments = (props: { item: IComment }) => {
-  const { writer, movieKey, content, rate, like, dislike } = props.item;
+  const { writer, movieKey, content, rate, like, dislike, profileIdx } =
+    props.item;
 
   const [likes, setLikes] = React.useState(like);
   const [dislikes, setDislikes] = React.useState(dislike);
@@ -72,7 +73,7 @@ const Comments = (props: { item: IComment }) => {
                   src={
                     process.env.PUBLIC_URL +
                     "/images/profiles/" +
-                    Math.floor(Math.random() * 16) +
+                    profileIdx +
                     ".svg"
                   }
                   alt="profile"
