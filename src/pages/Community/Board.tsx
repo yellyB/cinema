@@ -1,7 +1,23 @@
-import React from "react";
-import { PageHeader, Space, Table, Tag } from "antd";
+import React, { useState } from "react";
+import { PageHeader, Table, Modal, Button } from "antd";
+import ShowTableContent from "./ShowTableContent";
+import axios from "axios";
+import { IBoard } from "../../common/interface";
 
-function Board() {
+const getBoardData = async () => {
+  let boardData: IBoard[] = [];
+  await axios
+    .get(process.env.PUBLIC_URL + "/datas/board.json")
+    .then((response) => {
+      for (const item of response.data.data) {
+        boardData.push(item);
+      }
+    });
+
+  return boardData;
+};
+
+const Board = () => {
   const columns = [
     {
       title: "글 번호",
@@ -28,33 +44,52 @@ function Board() {
     },
   ];
 
-  const data = [
-    {
-      index: "3",
-      title: "bad",
-      writer: "John Brown",
-      viewCount: 21,
-    },
-    {
-      index: "2",
-      title: "fdsfd",
-      writer: "Jim Green",
-      viewCount: 33,
-    },
-    {
-      index: "1",
-      title: "titltlel",
-      writer: "Joe Black",
-      viewCount: 13,
-    },
-  ];
+  const [data, setData] = React.useState<IBoard[]>([]);
+
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [rowData, setRowData] = useState<IBoard>({} as any);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const tableRowOnClick = (record: IBoard) => {
+    showModal();
+    setRowData(record);
+  };
+
+  React.useEffect(() => {
+    getBoardData().then((res) => {
+      setData(res);
+    });
+  }, []);
 
   return (
     <React.Fragment>
       <PageHeader className="site-page-header" title="자유게시판" />
-      <Table columns={columns} dataSource={data} />
+      <Table
+        columns={columns}
+        dataSource={data}
+        onRow={(record, rowIndex) => {
+          return {
+            onClick: (event) => {
+              tableRowOnClick(record);
+            },
+          };
+        }}
+        pagination={{ position: ["bottomCenter"] }}
+      />
+      <ShowTableContent
+        rowData={rowData}
+        visible={isModalVisible}
+        onClose={handleCancel}
+      />
     </React.Fragment>
   );
-}
+};
 
 export default Board;
