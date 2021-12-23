@@ -1,5 +1,6 @@
 import React from "react";
-import "./App.css";
+import "./App.less";
+import "./style.css";
 import { Affix, Button, Col, Dropdown, Layout, Menu, Row } from "antd";
 import { Cinema, Community, MyPage } from "./pages";
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";

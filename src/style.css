@@ -1,9 +1,3 @@
-.App {
-  text-align: center;
-}
-
-@import "~antd/dist/antd.css";
-
 .reserve_card {
   min-height: 500px;
   margin: 15px;
