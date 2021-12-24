@@ -21,4 +21,4 @@
 
 
 ## 링크
-https://yellyb.github.io/webOS2/
+https://yellyb.github.io/cinema/
