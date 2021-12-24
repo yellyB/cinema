@@ -30,3 +30,9 @@ export interface IBoard {
   content: string;
   viewCount: number;
 }
+
+export interface IAlarm {
+  index: number;
+  title: string;
+  content: string;
+}

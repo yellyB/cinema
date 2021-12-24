@@ -1,7 +1,7 @@
 import React from "react";
-import { Modal, Button, Row, Col, Typography } from "antd";
+import { Modal, Button, Row, Col, Typography, Dropdown, Menu } from "antd";
 import { IBoard } from "../../common/interface";
-import { UserOutlined, EyeOutlined } from "@ant-design/icons";
+import { EyeOutlined } from "@ant-design/icons";
 
 const { Text, Link } = Typography;
 
@@ -16,6 +16,13 @@ const ShowTableContent = (props: {
     onClose,
   } = props;
 
+  const menu = (
+    <Menu style={{ background: "#666", marginLeft: 50, marginTop: -5 }}>
+      <Menu.Item style={{ color: "#eee" }}>쪽지보내기</Menu.Item>
+      <Menu.Item style={{ color: "#eee" }}>작성글 보기</Menu.Item>
+    </Menu>
+  );
+
   return (
     <Modal
       title={title}
@@ -28,16 +35,15 @@ const ShowTableContent = (props: {
       ]}
     >
       <Row>
-        <Col span={22}>
-          <Text type="secondary">
-            <UserOutlined />
-            {writer}
-          </Text>
+        <Col span={21}>
+          <Dropdown overlay={menu} placement="bottomLeft">
+            <Button type="text">{writer}</Button>
+          </Dropdown>
         </Col>
-        <Col span={2}>
+        <Col span={3}>
           <Text type="secondary">
             <EyeOutlined />
-            {viewCount}
+            {" " + viewCount}
           </Text>
         </Col>
         <Col span={24}>{content}</Col>

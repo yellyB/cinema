@@ -1,22 +1,26 @@
 import React from "react";
 import "./App.less";
 import "./style.css";
-import { Affix, Button, Col, Dropdown, Layout, Menu, Row } from "antd";
+import { Affix, Badge, Button, Col, Dropdown, Layout, Menu, Row } from "antd";
 import { Cinema, Community, MyPage } from "./pages";
-import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
+import { UserOutlined, BellOutlined } from "@ant-design/icons/lib/icons";
 import Login from "./pages/Login";
 import PresentReserve from "./pages/PresentReserve";
+import Alarm from "./pages/Alarm";
+import { useSelector } from "react-redux";
 
 const { Header, Content, Footer } = Layout;
 
 function App() {
   const [menuItemKey, setMenuItemKey] = React.useState<string>("cinema");
 
+  const alarmList: any = useSelector((state) => state);
+
   const handleMenuItemOnClick = (e: any) => {
     setMenuItemKey(e.key);
   };
 
-  const handleDropDownOnClick = (e) => {
+  const handleDropDownOnClick = (e: { key: React.SetStateAction<string> }) => {
     setMenuItemKey(e.key);
   };
 
@@ -66,7 +70,22 @@ function App() {
                 <Menu.Item key={"mypage"}>내 정보</Menu.Item>
               </Menu>
             </Col>
-            <Col span={1} offset={5}>
+            <Col span={1} offset={4}>
+              <Dropdown
+                overlay={<Alarm alarmList={alarmList} />}
+                trigger={["click"]}
+              >
+                <Badge count={alarmList.length}>
+                  <Button
+                    icon={<BellOutlined style={{ fontSize: 20 }} />}
+                    shape="circle"
+                    ghost
+                    style={{ borderColor: "transparent" }}
+                  />
+                </Badge>
+              </Dropdown>
+            </Col>
+            <Col span={1}>
               <Dropdown overlay={dropDownMenu} trigger={["click"]}>
                 <Button
                   icon={<UserOutlined style={{ fontSize: 20 }} />}
