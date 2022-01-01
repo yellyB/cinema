@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Modal, Button, Row, Col, Typography, Dropdown, Menu } from "antd";
 import { IBoard } from "../../common/interface";
 import { EyeOutlined } from "@ant-design/icons";
@@ -23,6 +23,10 @@ const ShowTableContent = (props: {
     </Menu>
   );
 
+  useEffect(() => {
+    console.log(content?.replace("<|>", "\n"));
+  }, [content]);
+
   return (
     <Modal
       title={title}
@@ -46,7 +50,7 @@ const ShowTableContent = (props: {
             {" " + viewCount}
           </Text>
         </Col>
-        <Col span={24}>{content}</Col>
+        <Col span={24}>{content?.replace("<|>", "\n")}</Col>
       </Row>
     </Modal>
   );
