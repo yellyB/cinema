@@ -41,7 +41,8 @@ const StepThree = (props: {
       <Row justify="center">
         <Col span={8}>
           <Image
-            width={200}
+            // width={200}
+            preview={false}
             src={
               process.env.PUBLIC_URL +
               "/images/movies/" +
