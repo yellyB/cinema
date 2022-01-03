@@ -49,21 +49,23 @@ const Reservation = () => {
   });
 
   const handleStepChange = (direction: string) => {
-    if (
-      stepValue === 0 &&
-      (selectedMovie === "" ||
-        selectedTheater === "" ||
-        selectedTime.room === "")
-    ) {
-      message.warning("예매 정보를 선택해주세요.");
-      return;
-    }
-    if (
-      stepValue === 1 &&
-      (selectedSeat.row === "" || selectedSeat.col === 0)
-    ) {
-      message.warning("좌석을 선택해주세요.");
-      return;
+    if (direction !== "prev") {
+      if (
+        stepValue === 0 &&
+        (selectedMovie === "" ||
+          selectedTheater === "" ||
+          selectedTime.room === "")
+      ) {
+        message.warning("예매 정보를 선택해주세요.");
+        return;
+      }
+      if (
+        stepValue === 1 &&
+        (selectedSeat.row === "" || selectedSeat.col === 0)
+      ) {
+        message.warning("좌석을 선택해주세요.");
+        return;
+      }
     }
     setStepValue(direction === "prev" ? stepValue - 1 : stepValue + 1);
   };
