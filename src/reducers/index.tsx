@@ -1,7 +1,7 @@
 import * as types from "../actions/ActionTypes";
 import { IAlarm } from "../common/interface";
 
-const alarm: IAlarm[] = [
+const alarmList: IAlarm[] = [
   {
     index: 0,
     title: "알림",
@@ -14,17 +14,21 @@ const alarm: IAlarm[] = [
   },
 ];
 
-const counter = (state = alarm, action) => {
-  switch (action.type) {
-    case types.INCREMENT:
-    //   return { ...state, number: state.number + 1 };
-    case types.DECREMENT:
-    //   return { ...state, number: state.number - 1 };
-    case types.SET_COLOR:
-      return { ...state, color: action.color };
-    default:
-      return state;
-  }
+// const counter = (state = alarm, action) => {
+//   switch (action.type) {
+//     case types.INCREMENT:
+//       return { ...state, number: state.number + 1 };
+//     case types.DECREMENT:
+//        return { ...state, number: state.number - 1 };
+//     case types.SET_COLOR:
+//       return { ...state, color: action.color };
+//     default:
+//       return state;
+//   }
+// };
+
+const alarm = (state = alarmList, action) => {
+  return state;
 };
 
-export default counter;
+export default alarm;

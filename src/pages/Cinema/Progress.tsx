@@ -47,18 +47,18 @@ const ProgressBtn = (props: {
   };
 
   return (
-    <Row justify="center">
+    <Row>
       <Col span={11}>
         <Button
           disabled={step === 0}
-          style={{ margin: "0 8px" }}
           onClick={() => handleStepChange("prev")}
+          style={{ marginLeft: "3%" }}
           className="reserve_step_btn"
         >
           이전단계
         </Button>
       </Col>
-      <Col span={11}>
+      <Col span={11} offset={1}>
         {step < steps.length - 1 && (
           <Button
             type="primary"

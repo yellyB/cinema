@@ -14,3 +14,15 @@
   height: 70px;
   font-size: 20pt;
 }
+.payment_table_label {
+  background-color: #fafafa;
+  border: 1px solid #f0f0f0;
+  padding: 3%;
+  text-align: center;
+}
+.payment_table_content {
+  background-color: #fff;
+  border: 1px solid #f0f0f0;
+  padding: 3%;
+  padding-left: 30px;
+}

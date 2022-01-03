@@ -44,11 +44,12 @@ const StepThree = (props: {
   return (
     <>
       <Row justify="center">
-        <Col span={18}>
+        <Col span={16}>
           <Row>
             <Col span={8}>
               <Image
-                width={200}
+                width={"90%"}
+                preview={false}
                 src={
                   process.env.PUBLIC_URL +
                   "/images/movies/" +
@@ -59,29 +60,62 @@ const StepThree = (props: {
             </Col>
             <Col span={16}>
               <Row>
-                <Col span={24}>제목{selectedMovie}</Col>
-                <Col span={24}>지점{selectedTheater}</Col>
-                <Col span={24}>상영관{selectedTime.room}</Col>
-                <Col span={24}>시간{selectedTime.time}</Col>
-                <Col span={24}>
-                  좌석{selectedSeat.row}
+                <Col span={8} className="payment_table_label">
+                  제목
+                </Col>
+                <Col span={16} className="payment_table_content">
+                  {selectedMovie}
+                </Col>
+                <Col span={8} className="payment_table_label">
+                  지점
+                </Col>
+                <Col span={16} className="payment_table_content">
+                  {selectedTheater}
+                </Col>
+                <Col span={8} className="payment_table_label">
+                  상영관
+                </Col>
+                <Col span={16} className="payment_table_content">
+                  {selectedTime.room}
+                </Col>
+                <Col span={8} className="payment_table_label">
+                  시간
+                </Col>
+                <Col span={16} className="payment_table_content">
+                  {selectedTime.time}
+                </Col>
+                <Col span={8} className="payment_table_label">
+                  좌석
+                </Col>
+                <Col span={16} className="payment_table_content">
+                  {selectedSeat.row}
                   {selectedSeat.col}
                 </Col>
               </Row>
             </Col>
-            <Col span={14} style={{ marginTop: 30 }}>
+          </Row>
+          <Row justify="center" style={{ marginTop: 30 }}>
+            <Col span={24}>
               <Divider orientation="left">
                 <Title level={4}>결제 정보</Title>
               </Divider>
             </Col>
-            <Col span={12}>
+            <Col span={20}>
               <Form layout="vertical" form={form}>
                 <Form.Item label="휴대폰 번호">
-                  <Input placeholder="- 없이 입력" />
+                  <Input.Group compact>
+                    <Select placeholder="통신사 선택" style={{ width: "35%" }}>
+                      <Option value="0">SKT</Option>
+                      <Option value="1">KT</Option>
+                      <Option value="2">LG U+</Option>
+                      <Option value="3">알뜰폰</Option>
+                    </Select>
+                    <Input placeholder="- 없이 입력" style={{ width: "65%" }} />
+                  </Input.Group>
                 </Form.Item>
                 <Form.Item label="포인트">
                   <Row>
-                    <Col span={8}>
+                    <Col span={10}>
                       <InputNumber
                         placeholder="사용할 포인트"
                         value={usePoint}
@@ -96,21 +130,21 @@ const StepThree = (props: {
                     <Col span={6} offset={2} style={{ paddingTop: 5 }}>
                       보유: {pointOrign} 점
                     </Col>
-                    <Col span={5}>
+                    <Col span={6}>
                       <Button onClick={handlePointUseOnClick}>모두 사용</Button>
                     </Col>
                   </Row>
                 </Form.Item>
                 <Form.Item label="결제정보">
-                  <Input.Group>
-                    <Select placeholder="카드선택" style={{ width: "50%" }}>
+                  <Input.Group compact>
+                    <Select placeholder="카드선택" style={{ width: "40%" }}>
                       <Option value={"1"}>국민</Option>
                       <Option value={"2"}>신한</Option>
                       <Option value={"3"}>농협</Option>
                       <Option value={"4"}>삼성</Option>
                       <Option value={"5"}>현대</Option>
                     </Select>
-                    <Select placeholder="할부기간" style={{ width: "50%" }}>
+                    <Select placeholder="할부기간" style={{ width: "60%" }}>
                       <Option value={"1"}>일시불</Option>
                       <Option value={"2"}>2개월 무이자</Option>
                       <Option value={"3"}>3개월 무이자</Option>
@@ -121,17 +155,13 @@ const StepThree = (props: {
                 </Form.Item>
               </Form>
             </Col>
-            <Col span={24}>
-              <Text>
-                최종 결제 금액:
-                <InputNumber
-                  placeholder="Borderless"
-                  bordered={false}
-                  value={price - usePoint}
-                  formatter={(value) =>
-                    `${value} 원`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                  }
-                />
+          </Row>
+          <Row justify="center" style={{ marginTop: 30 }}>
+            <Col>
+              <Text mark style={{ fontSize: "28pt" }}>
+                최종 결제 금액:{" "}
+                {String(price - usePoint).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                원
               </Text>
             </Col>
           </Row>
