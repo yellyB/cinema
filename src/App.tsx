@@ -53,7 +53,7 @@ function App() {
   React.useEffect(() => {}, []);
 
   return (
-    <Layout className="layout">
+    <Layout className="layout" style={{ fontFamily: "scoreDream1" }}>
       <Affix>
         <Header>
           <div className="logo" />
