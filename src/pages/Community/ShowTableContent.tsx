@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Modal, Button, Row, Col, Typography, Dropdown, Menu } from "antd";
 import { IBoard } from "../../common/interface";
 import { EyeOutlined } from "@ant-design/icons";
@@ -22,10 +22,6 @@ const ShowTableContent = (props: {
       <Menu.Item style={{ color: "#eee" }}>작성글 보기</Menu.Item>
     </Menu>
   );
-
-  useEffect(() => {
-    console.log(content?.replace("<|>", "\n"));
-  }, [content]);
 
   return (
     <Modal
