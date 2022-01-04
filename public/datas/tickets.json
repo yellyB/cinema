@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "ticketNo": 3,
+      "title": "Spider-Man",
+      "writer": "브라우닝",
+      "content": "공짜표가 있는데 제가 시간이 안돼갖구 눔나합니다 ㅎㅎ<|>쪽지주세요!",
+      "viewCount": 13
+    },
+    {
+      "ticketNo": 2,
+      "title": "The French Dispatch",
+      "writer": "쌩크림케읰",
+      "content": "스파이디 세명 나오기 전까지 너무 노잼...<|>그나마 문어악당 때문에 웃기고 나머지는 아무 감흥도 재미도 없었음..<|>3슾디 볼 수 있어서 좋았지만 그 부분 빼면 노잼인 영화였음.",
+      "viewCount": 64
+    },
+    {
+      "ticketNo": 1,
+      "title": "Encanto",
+      "writer": "얌샘",
+      "content": "앱 내에서 충전할때 오만원 충전에 칠만원 써야됨 ㅋ",
+      "viewCount": 96
+    },
+    {
+      "ticketNo": 0,
+      "title": "Titane",
+      "writer": "221B",
+      "content": "그거슨 영드 셜록이쥬. 셜록 보세요 셜록",
+      "viewCount": 186
+    }
+  ]
+}

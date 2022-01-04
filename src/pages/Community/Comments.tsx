@@ -1,4 +1,4 @@
-import React, { createElement } from "react";
+import React, { useState, useEffect, createElement } from "react";
 import {
   Comment,
   Avatar,
@@ -16,7 +16,8 @@ import {
   DislikeFilled,
   LikeFilled,
 } from "@ant-design/icons";
-import { IComment } from "../../common/interface";
+import { IComment, IMovieList } from "../../common/interface";
+import { getMovieList } from "../../common/axios";
 
 const { Title, Text } = Typography;
 
@@ -24,9 +25,10 @@ const Comments = (props: { item: IComment }) => {
   const { writer, movieKey, content, rate, like, dislike, profileIdx } =
     props.item;
 
-  const [likes, setLikes] = React.useState(like);
-  const [dislikes, setDislikes] = React.useState(dislike);
-  const [action, setAction] = React.useState(null);
+  const [likes, setLikes] = useState(like);
+  const [dislikes, setDislikes] = useState(dislike);
+  const [action, setAction] = useState(null);
+  const [movies, setMovies] = useState<IMovieList[]>([]);
 
   const handlelike = () => {
     setLikes(like + 1);
@@ -38,6 +40,12 @@ const Comments = (props: { item: IComment }) => {
     setDislikes(dislike + 1);
     setAction("disliked");
   };
+
+  useEffect(() => {
+    getMovieList().then((res) => {
+      setMovies(res);
+    });
+  }, []);
 
   const actions = [
     <Tooltip key="comment-basic-like" title="Like">
@@ -84,7 +92,11 @@ const Comments = (props: { item: IComment }) => {
               <Rate disabled value={rate} />
             </Col>
             <Col span={24} style={{ paddingTop: 5, border: "0px solid red" }}>
-              <Title level={4}>영화 키{movieKey}</Title>
+              <Title level={4}>
+                {movies
+                  .filter((movie: IMovieList) => movie.key === movieKey)
+                  .map((movie: IMovieList) => movie.title)}
+              </Title>
             </Col>
             <Col span={24}>
               <Text>{content}</Text>
