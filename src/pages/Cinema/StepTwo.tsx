@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import { InputNumber, Row, Col, Typography, Tag, Card } from "antd";
-import React from "react";
 import { SeatTags } from "./SeatTag";
 
 const { Title } = Typography;
@@ -7,9 +7,9 @@ const { Title } = Typography;
 const StepTwo = (props: { selectedSeat: any; setSelectedSeat: Function }) => {
   const { selectedSeat, setSelectedSeat } = props;
 
-  const [limit] = React.useState<any>({ min: 0, max: 10 });
-  const [adultCount, setAdultCount] = React.useState<number>(0);
-  const [kidCount, setKidCount] = React.useState<number>(0);
+  const [limit] = useState<any>({ min: 0, max: 10 });
+  const [adultCount, setAdultCount] = useState<number>(0);
+  const [kidCount, setKidCount] = useState<number>(0);
 
   const handleAdultOnChange = (value: any) => {
     setAdultCount(value);

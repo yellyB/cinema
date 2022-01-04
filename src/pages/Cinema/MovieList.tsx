@@ -1,5 +1,4 @@
-import React from "react";
-import axios from "axios";
+import React, { useState, createElement, useEffect } from "react";
 import { Card, Col, PageHeader, Row, Space, Typography } from "antd";
 import { IMovieList } from "../../common/interface";
 import Meta from "antd/lib/card/Meta";
@@ -8,32 +7,22 @@ import {
   LikeOutlined,
   MessageOutlined,
 } from "@ant-design/icons/lib/icons";
+import { getMovieList } from "../../common/axios";
 
 const { Link } = Typography;
 
 const IconText = ({ icon, text }) => (
   <Space>
-    {React.createElement(icon)}
+    {createElement(icon)}
     {text}
   </Space>
 );
 
-const getMovieRanking = async () => {
-  let movies: IMovieList[] = [];
-  await axios
-    .get(process.env.PUBLIC_URL + "/datas/movies.json")
-    .then((response) => {
-      movies = response.data.data;
-    });
-
-  return movies;
-};
-
 const MovieList = () => {
-  const [ranking, setRanking] = React.useState<IMovieList[]>([]);
+  const [ranking, setRanking] = useState<IMovieList[]>([]);
 
-  React.useEffect(() => {
-    getMovieRanking().then((res) => {
+  useEffect(() => {
+    getMovieList().then((res) => {
       setRanking(res);
     });
   }, []);

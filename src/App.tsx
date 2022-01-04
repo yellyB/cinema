@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.less";
 import "./style.css";
 import { Affix, Badge, Button, Col, Dropdown, Layout, Menu, Row } from "antd";
@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 const { Header, Content, Footer } = Layout;
 
 function App() {
-  const [menuItemKey, setMenuItemKey] = React.useState<string>("cinema");
+  const [menuItemKey, setMenuItemKey] = useState<string>("cinema");
 
   const alarmList: any = useSelector((state) => state);
 
@@ -50,7 +50,7 @@ function App() {
     </Menu>
   );
 
-  React.useEffect(() => {}, []);
+  useEffect(() => {}, []);
 
   return (
     <Layout className="layout" style={{ fontFamily: "scoreDream1" }}>

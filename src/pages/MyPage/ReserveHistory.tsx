@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Descriptions } from "antd";
 
 function ReserveHistory() {
-  const [menuItemKey, setMenuItemKey] = React.useState<string>("movie");
+  const [menuItemKey, setMenuItemKey] = useState<string>("movie");
 
   const handlMenuOnClick = (e: any) => {
     setMenuItemKey(e.key);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Menu } from "antd";
 import {
   MailOutlined,
@@ -9,7 +9,7 @@ import Review from "./Community/Review";
 import Board from "./Community/Board";
 
 function Community() {
-  const [menuItemKey, setMenuItemKey] = React.useState<string>("review");
+  const [menuItemKey, setMenuItemKey] = useState<string>("review");
 
   const handlMenuOnClick = (e: any) => {
     setMenuItemKey(e.key);

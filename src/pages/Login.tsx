@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 
 const Login = (props: { setMenuItemKey: Function }) => {
@@ -19,7 +19,7 @@ const Login = (props: { setMenuItemKey: Function }) => {
     return global.localStorage.getItem("remember") === "true" ? true : false;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     console.log(isRemember());
   }, []);
 

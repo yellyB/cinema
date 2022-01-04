@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Typography,
   Card,
@@ -34,16 +34,16 @@ const steps = [
 ];
 
 const Reservation = () => {
-  const [stepValue, setStepValue] = React.useState<number>(0);
+  const [stepValue, setStepValue] = useState<number>(0);
 
-  const [selectedMovie, setSelectedMovie] = React.useState<string>("");
-  const [selectedTheater, setSelectedTheater] = React.useState<string>("");
-  const [selectedTime, setSelectedTimes] = React.useState<IMovieTimesEachRoom>({
+  const [selectedMovie, setSelectedMovie] = useState<string>("");
+  const [selectedTheater, setSelectedTheater] = useState<string>("");
+  const [selectedTime, setSelectedTimes] = useState<IMovieTimesEachRoom>({
     room: "",
     time: "",
   });
 
-  const [selectedSeat, setSelectedSeat] = React.useState<any>({
+  const [selectedSeat, setSelectedSeat] = useState<any>({
     row: "",
     col: 0,
   });

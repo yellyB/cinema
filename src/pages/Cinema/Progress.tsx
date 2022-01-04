@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Steps, Button, message, Row, Col } from "antd";
 import { MessageType } from "antd/lib/message";
 
@@ -26,6 +26,7 @@ const submit = async () => {
     }, 1000);
   }).then(() => {
     message.success("결제 완료!");
+    //TODO: 완료 후 내 정보 창으로 이동
   });
   return promise;
 };
@@ -37,7 +38,7 @@ const ProgressBtn = (props: {
 }) => {
   const { steps, step, handleStepChange } = props;
 
-  const [loading, setLoading] = React.useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmitOnClick = async () => {
     setLoading(true);

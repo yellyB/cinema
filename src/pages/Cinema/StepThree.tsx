@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Descriptions,
   Form,
@@ -26,10 +26,10 @@ const StepThree = (props: {
   const { selectedMovie, selectedTheater, selectedTime, selectedSeat } = props;
 
   const [form] = Form.useForm();
-  const [pointOrign, setPointOrign] = React.useState<number>(1490);
-  const [point, setPoint] = React.useState<number>(1490);
-  const [usePoint, setUsePoint] = React.useState<number>(0);
-  const [price, setPrice] = React.useState<number>(10000);
+  const [pointOrign, setPointOrign] = useState<number>(1490);
+  const [point, setPoint] = useState<number>(1490);
+  const [usePoint, setUsePoint] = useState<number>(0);
+  const [price, setPrice] = useState<number>(10000);
 
   const handlePointOnChange = (value: any) => {
     setPoint(pointOrign - value);

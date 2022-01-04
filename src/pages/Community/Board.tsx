@@ -1,21 +1,8 @@
-import React, { useState } from "react";
-import { PageHeader, Table, Modal, Button } from "antd";
+import React, { useState, useEffect } from "react";
+import { PageHeader, Table } from "antd";
 import ShowTableContent from "./ShowTableContent";
-import axios from "axios";
 import { IBoard } from "../../common/interface";
-
-const getBoardData = async () => {
-  let boardData: IBoard[] = [];
-  await axios
-    .get(process.env.PUBLIC_URL + "/datas/board.json")
-    .then((response) => {
-      for (const item of response.data.data) {
-        boardData.push(item);
-      }
-    });
-
-  return boardData;
-};
+import { getBoardData } from "../../common/axios";
 
 const Board = () => {
   const columns = [
@@ -44,7 +31,7 @@ const Board = () => {
     },
   ];
 
-  const [data, setData] = React.useState<IBoard[]>([]);
+  const [data, setData] = useState<IBoard[]>([]);
 
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [rowData, setRowData] = useState<IBoard>({} as any);
@@ -62,7 +49,7 @@ const Board = () => {
     setRowData(record);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     getBoardData().then((res) => {
       setData(res);
     });

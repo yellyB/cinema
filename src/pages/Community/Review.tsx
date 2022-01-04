@@ -1,41 +1,9 @@
-import React from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import WriteComment from "./WriteComment";
 import Comments from "./Comments";
 import { IComment } from "../../common/interface";
 import { Card, List, Row } from "antd";
-
-const getComments = async () => {
-  let comments: IComment[] = [];
-  await axios
-    .get(process.env.PUBLIC_URL + "/datas/comments.json")
-    .then((response) => {
-      const res = response.data.data;
-      res.forEach(
-        (element: {
-          writer: any;
-          movieKey: any;
-          content: any;
-          rate: any;
-          like: any;
-          dislike: any;
-        }) => {
-          const data: IComment = {
-            writer: element.writer,
-            movieKey: element.movieKey,
-            content: element.content,
-            rate: element.rate,
-            like: element.like,
-            dislike: element.dislike,
-            profileIdx: Math.floor(Math.random() * 16),
-          };
-          comments.push(data);
-        }
-      );
-    });
-
-  return comments;
-};
+import { getComments } from "../../common/axios";
 
 const CommentList = ({ comments }) => (
   <>
@@ -54,13 +22,13 @@ const CommentList = ({ comments }) => (
 );
 
 const Review = () => {
-  const [list, setList] = React.useState<IComment[]>([]);
+  const [list, setList] = useState<IComment[]>([]);
 
   const handleAddComment = (newComment: IComment) => {
     setList(list.concat(newComment));
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     getComments().then((res) => {
       setList(res);
     });

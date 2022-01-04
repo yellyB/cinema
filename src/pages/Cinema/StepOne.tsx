@@ -1,48 +1,15 @@
-import React from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Typography } from "antd";
 import { SlidingTabs } from "./SlidingTabs";
 import { TimeTag } from "./TimeTag";
-import { IMovieStartTimes, IMovieTimesEachRoom } from "../../common/interface";
+import {
+  IMovieStartTimes,
+  IMovieTimesEachRoom,
+  IMovieList,
+} from "../../common/interface";
+import { getMovieList, getTheaters, getTimes } from "../../common/axios";
 
 const { Title } = Typography;
-
-const getMovieTitles = async () => {
-  let movies: string[] = [];
-  await axios
-    .get(process.env.PUBLIC_URL + "/datas/movies.json")
-    .then((response) => {
-      for (const movie of response.data.data) {
-        movies.push(movie.title);
-      }
-    });
-
-  return movies;
-};
-
-const getTheaters = async () => {
-  let theaters: string[] = [];
-  await axios
-    .get(process.env.PUBLIC_URL + "/datas/theaters.json")
-    .then((response) => {
-      for (const theater of response.data.data) {
-        theaters.push(theater.place);
-      }
-    });
-
-  return theaters;
-};
-
-const getTimes = async () => {
-  let theaters: IMovieStartTimes[];
-  await axios
-    .get(process.env.PUBLIC_URL + "/datas/startTimes.json")
-    .then((response) => {
-      theaters = response.data.data;
-    });
-
-  return theaters;
-};
 
 const StepOne = (props: {
   setSelectedMovie: Function;
@@ -57,9 +24,9 @@ const StepOne = (props: {
     setSelectedTimes,
   } = props;
 
-  const [titles, setTitles] = React.useState<string[]>([]);
-  const [theaters, setTheaters] = React.useState<string[]>([]);
-  const [times, setTimes] = React.useState<IMovieStartTimes[]>([]);
+  const [titles, setTitles] = useState<string[]>([]);
+  const [theaters, setTheaters] = useState<string[]>([]);
+  const [times, setTimes] = useState<IMovieStartTimes[]>([]);
 
   const handleTabOnClick = (key: string, type: string) => {
     if (type === "title") {
@@ -69,10 +36,10 @@ const StepOne = (props: {
     }
   };
 
-  React.useEffect(() => {
-    getMovieTitles().then((res) => {
-      setTitles(res);
-      setSelectedMovie(res[0]);
+  useEffect(() => {
+    getMovieList().then((res) => {
+      setTitles(res.map((item: IMovieList) => item.title));
+      setSelectedMovie(res[0].title);
     });
     getTheaters().then((res) => {
       setTheaters(res);
