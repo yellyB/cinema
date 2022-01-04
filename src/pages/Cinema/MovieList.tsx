@@ -18,7 +18,8 @@ const IconText = ({ icon, text }) => (
   </Space>
 );
 
-const MovieList = () => {
+const MovieList = (props: { reserveOnClick: Function }) => {
+  const { reserveOnClick } = props;
   const [ranking, setRanking] = useState<IMovieList[]>([]);
 
   useEffect(() => {
@@ -37,7 +38,16 @@ const MovieList = () => {
               hoverable
               key={index}
               title={index + 1 + " 위"}
-              extra={<Link href="#">예매하기</Link>}
+              extra={
+                <Link
+                  href="#"
+                  onClick={() => {
+                    reserveOnClick();
+                  }}
+                >
+                  예매하기
+                </Link>
+              }
               style={{ width: 300 }}
               cover={
                 <img

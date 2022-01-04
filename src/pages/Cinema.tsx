@@ -4,7 +4,7 @@ import { MailOutlined, AppstoreOutlined } from "@ant-design/icons";
 import MovieList from "./Cinema/MovieList";
 import Reservation from "./Cinema/Reservation";
 
-function Cinema() {
+function Cinema(props: { showOnlineTicket: Function }) {
   const [menuItemKey, setMenuItemKey] = useState<string>("movie");
 
   const handlMenuOnClick = (e: any) => {
@@ -25,8 +25,12 @@ function Cinema() {
           예매
         </Menu.Item>
       </Menu>
-      {menuItemKey === "movie" && <MovieList />}
-      {menuItemKey === "reservation" && <Reservation />}
+      {menuItemKey === "movie" && (
+        <MovieList reserveOnClick={() => setMenuItemKey("reservation")} />
+      )}
+      {menuItemKey === "reservation" && (
+        <Reservation showOnlineTicket={props.showOnlineTicket} />
+      )}
     </React.Fragment>
   );
 }
