@@ -109,7 +109,11 @@ function App() {
         <div className="site-layout-content" />
         <Row>
           <Col span={16} offset={4}>
-            {menuItemKey === "cinema" && <Cinema />}
+            {menuItemKey === "cinema" && (
+              <Cinema
+                showOnlineTicket={() => setMenuItemKey("presentReserve")}
+              />
+            )}
             {menuItemKey === "community" && <Community />}
             {menuItemKey === "mypage" && <MyPage />}
             {menuItemKey === "login" && (

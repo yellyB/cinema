@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Menu } from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 import {
@@ -12,8 +12,7 @@ import MyInfo from "./MyPage/MyInfo";
 import Point from "./MyPage/Point";
 
 function MyPage() {
-  const [menuItemKey, setMenuItemKey] =
-    React.useState<string>("reserveHistory");
+  const [menuItemKey, setMenuItemKey] = useState<string>("reserveHistory");
 
   const handlMenuOnClick = (e: any) => {
     setMenuItemKey(e.key);

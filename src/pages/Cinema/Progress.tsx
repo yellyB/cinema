@@ -18,25 +18,13 @@ const Progress = (props: { steps: any; step: number }) => {
   );
 };
 
-const submit = async () => {
-  const promise = new Promise((resolve, reject) => {
-    console.log("doing something");
-    setTimeout(() => {
-      resolve(message.info("결제 진행 중"));
-    }, 1000);
-  }).then(() => {
-    message.success("결제 완료!");
-    //TODO: 완료 후 내 정보 창으로 이동
-  });
-  return promise;
-};
-
 const ProgressBtn = (props: {
   steps: any;
   step: number;
   handleStepChange: Function;
+  showOnlineTicket: Function;
 }) => {
-  const { steps, step, handleStepChange } = props;
+  const { steps, step, handleStepChange, showOnlineTicket } = props;
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -45,6 +33,23 @@ const ProgressBtn = (props: {
     await submit().finally(() => {
       setLoading(false);
     });
+  };
+
+  const submit = async () => {
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(message.info("결제 진행 중"));
+      }, 1000);
+    })
+      .then(() => {
+        message.success("결제 완료!");
+      })
+      .then(() => {
+        setTimeout(() => {
+          showOnlineTicket();
+        }, 1000);
+      });
+    return promise;
   };
 
   return (

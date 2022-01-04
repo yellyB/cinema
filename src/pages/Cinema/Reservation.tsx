@@ -33,7 +33,7 @@ const steps = [
   },
 ];
 
-const Reservation = () => {
+const Reservation = (props: { showOnlineTicket: Function }) => {
   const [stepValue, setStepValue] = useState<number>(0);
 
   const [selectedMovie, setSelectedMovie] = useState<string>("");
@@ -124,6 +124,7 @@ const Reservation = () => {
         steps={steps}
         step={stepValue}
         handleStepChange={handleStepChange}
+        showOnlineTicket={props.showOnlineTicket}
       />
     </React.Fragment>
   );
