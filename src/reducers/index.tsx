@@ -1,34 +1,32 @@
-import * as types from "../actions/ActionTypes";
 import { IAlarm } from "../common/interface";
 
 const alarmList: IAlarm[] = [
   {
     index: 0,
     title: "알림",
-    content: "그렇습니다.",
+    content: "내 글에 반응 2개가 있습니다.",
   },
   {
-    index: 0,
-    title: "경고!",
-    content: "경고쓰.",
+    index: 1,
+    title: "결제실패",
+    content: "잔액 부족으로 결제 실패",
   },
 ];
 
-// const counter = (state = alarm, action) => {
-//   switch (action.type) {
-//     case types.INCREMENT:
-//       return { ...state, number: state.number + 1 };
-//     case types.DECREMENT:
-//        return { ...state, number: state.number - 1 };
-//     case types.SET_COLOR:
-//       return { ...state, color: action.color };
-//     default:
-//       return state;
-//   }
-// };
-
 const alarm = (state = alarmList, action) => {
-  return state;
+  if (action.type === "add") {
+    const newIdx = !state ? 0 : state[state.length - 1].index + 1;
+    return [...state, { index: newIdx, ...action.data }];
+  } else if (action.type === "delete") {
+    if (action.idx === undefined) {
+      return [];
+    } else {
+      const temp = state.filter((item) => item.index !== action.idx);
+      return temp;
+    }
+  } else {
+    return state;
+  }
 };
 
 export default alarm;

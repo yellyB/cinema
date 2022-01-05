@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Steps, Button, message, Row, Col } from "antd";
 import { MessageType } from "antd/lib/message";
+import { useSelector, useDispatch } from "react-redux";
 
 const { Step } = Steps;
 
@@ -28,12 +29,8 @@ const ProgressBtn = (props: {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleSubmitOnClick = async () => {
-    setLoading(true);
-    await submit().finally(() => {
-      setLoading(false);
-    });
-  };
+  const alarmList: any = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const submit = async () => {
     const promise = new Promise((resolve, reject) => {
@@ -50,6 +47,20 @@ const ProgressBtn = (props: {
         }, 1000);
       });
     return promise;
+  };
+
+  const handleSubmitOnClick = async () => {
+    setLoading(true);
+    await submit()
+      .finally(() => {
+        setLoading(false);
+      })
+      .then(() => {
+        dispatch({
+          type: "add",
+          data: { title: "test", content: "egweg" },
+        });
+      });
   };
 
   return (

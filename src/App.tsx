@@ -50,8 +50,6 @@ function App() {
     </Menu>
   );
 
-  useEffect(() => {}, []);
-
   return (
     <Layout className="layout" style={{ fontFamily: "scoreDream1" }}>
       <Affix>

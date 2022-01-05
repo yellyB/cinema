@@ -2,20 +2,13 @@ import React from "react";
 import { Button, List, Typography, Row, Col, Divider, Menu } from "antd";
 import { CloseOutlined } from "@ant-design/icons/lib/icons";
 import { IAlarm } from "../common/interface";
+import { useDispatch } from "react-redux";
 
 const { Title } = Typography;
 
 const Alarm = (props: { alarmList: IAlarm[] }) => {
   const { alarmList } = props;
-  const handleDeleteOnClick = (index: number) => {
-    // store.DeleteAlarm(index);
-  };
-
-  const handleAlarmListClearOnClick = () => {
-    // store.ClearAlarmList();
-  };
-
-  console.log(alarmList);
+  const dispatch = useDispatch();
 
   return (
     <Menu style={{ width: 400 }}>
@@ -25,8 +18,32 @@ const Alarm = (props: { alarmList: IAlarm[] }) => {
             <Title level={4} style={{ paddingLeft: 20 }}>
               알림
             </Title>
-            <Button type="text" onClick={handleAlarmListClearOnClick}>
+            <Button
+              type="text"
+              onClick={() => {
+                dispatch({ type: "delete" });
+              }}
+            >
               모두 지우기
+            </Button>
+            <Button
+              type="text"
+              onClick={() => {
+                console.log(alarmList);
+              }}
+            >
+              show
+            </Button>
+            <Button
+              type="text"
+              onClick={() => {
+                dispatch({
+                  type: "add",
+                  data: { title: "test", content: "egweg" },
+                });
+              }}
+            >
+              add
             </Button>
           </Row>
         </Col>
@@ -44,11 +61,16 @@ const Alarm = (props: { alarmList: IAlarm[] }) => {
                   title={
                     <>
                       <Row justify="center" align="middle">
-                        <Col span={21}>{item.title}</Col>
+                        <Col span={21}>
+                          {item.title}
+                          {item.index}
+                        </Col>
                         <Col span={1}></Col>
                         <Col span={2}>
                           <CloseOutlined
-                            onClick={() => handleDeleteOnClick(item.index)}
+                            onClick={() =>
+                              dispatch({ type: "delete", idx: item.index })
+                            }
                           />
                         </Col>
                       </Row>
