@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Menu } from "antd";
-import { MailOutlined, AppstoreOutlined } from "@ant-design/icons";
+import { MailOutlined, CalendarOutlined } from "@ant-design/icons";
 import MovieList from "./Cinema/MovieList";
 import Reservation from "./Cinema/Reservation";
 
@@ -21,7 +21,7 @@ function Cinema(props: { showOnlineTicket: Function }) {
         <Menu.Item key="movie" icon={<MailOutlined />}>
           영화
         </Menu.Item>
-        <Menu.Item key="reservation" icon={<AppstoreOutlined />}>
+        <Menu.Item key="reservation" icon={<CalendarOutlined />}>
           예매
         </Menu.Item>
       </Menu>

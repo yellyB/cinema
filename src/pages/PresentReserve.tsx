@@ -17,6 +17,7 @@ const PresentReserve = () => {
     console.log(a, b, c);
   };
 
+  //실제 서비스에서는 스토어에서 불러오는게 아닌 DB에서 데이터 가져옴
   const ticket: ITicket = useSelector((state: IStoreState) => state.ticketData);
 
   return (

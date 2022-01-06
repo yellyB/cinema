@@ -31,6 +31,7 @@ const ProgressBtn = (props: {
 
   const [loading, setLoading] = useState<boolean>(false);
 
+  const ticket: ITicket = useSelector((state: IStoreState) => state.ticketData);
   const dispatch = useDispatch();
 
   const submit = async () => {
@@ -63,19 +64,11 @@ const ProgressBtn = (props: {
         });
       })
       .then(() => {
-        console.log(moment().format("YYYYMMDD"));
+        //실제 서비스에서는 이부분에서 DB에 데이터 저장함
         const data: ITicket = {
+          ...ticket,
           reserveNo: moment().format("YYYYMMDD") + "0106",
-          title: "222누젬ㄱ",
-          place: "222플레이스",
-          room: "twete",
-          seatRow: "22ㄴㄷㅁㅅ",
-          seatCol: 22,
-          date: "222날짜",
-          time: "222시간",
-          price: 2020,
         };
-
         dispatch({
           type: "setTicket",
           data: { data },
