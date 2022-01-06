@@ -36,3 +36,7 @@ export interface IAlarm {
   title: string;
   content: string;
 }
+
+export interface IStoreState {
+  alarmData: IAlarm[];
+}

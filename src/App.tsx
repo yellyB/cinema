@@ -8,13 +8,16 @@ import Login from "./pages/Login";
 import PresentReserve from "./pages/PresentReserve";
 import Alarm from "./pages/Alarm";
 import { useSelector } from "react-redux";
+import { IAlarm, IStoreState } from "./common/interface";
 
 const { Header, Content, Footer } = Layout;
 
 function App() {
   const [menuItemKey, setMenuItemKey] = useState<string>("cinema");
 
-  const alarmList: any = useSelector((state) => state);
+  const alarmList: IAlarm[] = useSelector(
+    (state: IStoreState) => state.alarmData
+  );
 
   const handleMenuItemOnClick = (e: any) => {
     setMenuItemKey(e.key);

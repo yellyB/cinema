@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Steps, Button, message, Row, Col } from "antd";
 import { MessageType } from "antd/lib/message";
 import { useSelector, useDispatch } from "react-redux";
+import { IAlarm, IStoreState } from "../../common/interface";
 
 const { Step } = Steps;
 
@@ -28,8 +29,9 @@ const ProgressBtn = (props: {
   const { steps, step, handleStepChange, showOnlineTicket } = props;
 
   const [loading, setLoading] = useState<boolean>(false);
-
-  const alarmList: any = useSelector((state) => state);
+  const alarmList: IAlarm[] = useSelector(
+    (state: IStoreState) => state.alarmData
+  );
   const dispatch = useDispatch();
 
   const submit = async () => {

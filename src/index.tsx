@@ -5,10 +5,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import { createStore } from "redux";
-import reducers from "./reducers";
+import rootReducers from "./store";
 import { Provider } from "react-redux";
 
-const store = createStore(reducers);
+const store = createStore(rootReducers);
 
 ReactDOM.render(
   <React.StrictMode>

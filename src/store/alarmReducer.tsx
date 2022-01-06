@@ -15,7 +15,7 @@ const alarmList: IAlarm[] = [
 
 const alarm = (state = alarmList, action) => {
   if (action.type === "add") {
-    const newIdx = !state ? 0 : state[state.length - 1].index + 1;
+    const newIdx = state.length === 0 ? 0 : state[state.length - 1].index + 1;
     return [...state, { index: newIdx, ...action.data }];
   } else if (action.type === "delete") {
     if (action.idx === undefined) {
