@@ -4,7 +4,7 @@ const alarmList: IAlarm[] = [
   {
     index: 0,
     title: "알림",
-    content: "내 글에 반응 2개가 있습니다.",
+    content: "작성글에 반응이 2개 있습니다.",
   },
   {
     index: 1,
@@ -14,10 +14,10 @@ const alarmList: IAlarm[] = [
 ];
 
 const alarm = (state = alarmList, action) => {
-  if (action.type === "add") {
+  if (action.type === "addAlarm") {
     const newIdx = state.length === 0 ? 0 : state[state.length - 1].index + 1;
     return [...state, { index: newIdx, ...action.data }];
-  } else if (action.type === "delete") {
+  } else if (action.type === "deleteAlarm") {
     if (action.idx === undefined) {
       return [];
     } else {

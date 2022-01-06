@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Steps, Button, message, Row, Col } from "antd";
 import { MessageType } from "antd/lib/message";
 import { useSelector, useDispatch } from "react-redux";
-import { IAlarm, IStoreState } from "../../common/interface";
+import { IAlarm, IStoreState, ITicket } from "../../common/interface";
+import moment from "moment";
 
 const { Step } = Steps;
 
@@ -29,9 +30,7 @@ const ProgressBtn = (props: {
   const { steps, step, handleStepChange, showOnlineTicket } = props;
 
   const [loading, setLoading] = useState<boolean>(false);
-  const alarmList: IAlarm[] = useSelector(
-    (state: IStoreState) => state.alarmData
-  );
+
   const dispatch = useDispatch();
 
   const submit = async () => {
@@ -59,8 +58,27 @@ const ProgressBtn = (props: {
       })
       .then(() => {
         dispatch({
-          type: "add",
+          type: "addAlarm",
           data: { title: "test", content: "egweg" },
+        });
+      })
+      .then(() => {
+        console.log(moment().format("YYYYMMDD"));
+        const data: ITicket = {
+          reserveNo: moment().format("YYYYMMDD") + "0106",
+          title: "222누젬ㄱ",
+          place: "222플레이스",
+          room: "twete",
+          seatRow: "22ㄴㄷㅁㅅ",
+          seatCol: 22,
+          date: "222날짜",
+          time: "222시간",
+          price: 2020,
+        };
+
+        dispatch({
+          type: "setTicket",
+          data: { data },
         });
       });
   };

@@ -6,44 +6,56 @@ import {
   IMovieStartTimes,
   IMovieTimesEachRoom,
   IMovieList,
+  ITicket,
+  IStoreState,
 } from "../../common/interface";
 import { getMovieList, getTheaters, getTimes } from "../../common/axios";
+import { useDispatch, useSelector } from "react-redux";
 
 const { Title } = Typography;
 
-const StepOne = (props: {
-  setSelectedMovie: Function;
-  setSelectedTheater: Function;
-  selectedTime: IMovieTimesEachRoom;
-  setSelectedTimes: Function;
-}) => {
-  const {
-    setSelectedMovie,
-    setSelectedTheater,
-    selectedTime,
-    setSelectedTimes,
-  } = props;
-
+const StepOne = () => {
   const [titles, setTitles] = useState<string[]>([]);
   const [theaters, setTheaters] = useState<string[]>([]);
   const [times, setTimes] = useState<IMovieStartTimes[]>([]);
 
+  const ticket: ITicket = useSelector((state: IStoreState) => state.ticketData);
+  const dispatch = useDispatch();
+
   const handleTabOnClick = (key: string, type: string) => {
     if (type === "title") {
-      setSelectedMovie(key);
+      const data: ITicket = { ...ticket, title: key };
+      dispatch({
+        type: "setTicket",
+        data: data,
+      });
     } else if (type === "theater") {
-      setSelectedTheater(key);
+      const data: ITicket = { ...ticket, place: key };
+      dispatch({
+        type: "setTicket",
+        data: data,
+      });
     }
+  };
+
+  const handleTagOnClick = (room: string, time: string) => {
+    const data: ITicket = {
+      ...ticket,
+      room: room,
+      time: time,
+    };
+    dispatch({
+      type: "setTicket",
+      data: data,
+    });
   };
 
   useEffect(() => {
     getMovieList().then((res) => {
       setTitles(res.map((item: IMovieList) => item.title));
-      setSelectedMovie(res[0].title);
     });
     getTheaters().then((res) => {
       setTheaters(res);
-      setSelectedTheater(res[0]);
     });
     getTimes().then((res) => {
       setTimes(res);
@@ -84,8 +96,11 @@ const StepOne = (props: {
                           key={i}
                           room={item.name}
                           time={timesEachRoom[order]}
-                          selectedTime={selectedTime}
-                          handleTagOnClick={setSelectedTimes}
+                          selectedTime={{
+                            room: ticket.room,
+                            time: ticket.time,
+                          }}
+                          handleTagOnClick={handleTagOnClick}
                         />
                       )
                     )}

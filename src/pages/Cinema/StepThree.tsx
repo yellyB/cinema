@@ -12,18 +12,19 @@ import {
   Select,
   InputNumber,
 } from "antd";
-import { IMovieTimesEachRoom } from "../../common/interface";
+import {
+  IMovieTimesEachRoom,
+  IStoreState,
+  ITicket,
+} from "../../common/interface";
+import { useDispatch, useSelector } from "react-redux";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
-const StepThree = (props: {
-  selectedMovie: string;
-  selectedTheater: string;
-  selectedTime: IMovieTimesEachRoom;
-  selectedSeat: any;
-}) => {
-  const { selectedMovie, selectedTheater, selectedTime, selectedSeat } = props;
+const StepThree = () => {
+  const ticket: ITicket = useSelector((state: IStoreState) => state.ticketData);
+  const dispatch = useDispatch();
 
   const [form] = Form.useForm();
   const [pointOrign, setPointOrign] = useState<number>(1490);
@@ -53,7 +54,7 @@ const StepThree = (props: {
                 src={
                   process.env.PUBLIC_URL +
                   "/images/movies/" +
-                  selectedMovie +
+                  ticket.title +
                   ".jpg"
                 }
               />
@@ -64,32 +65,32 @@ const StepThree = (props: {
                   제목
                 </Col>
                 <Col span={16} className="payment_table_content">
-                  {selectedMovie}
+                  {ticket.title}
                 </Col>
                 <Col span={8} className="payment_table_label">
                   지점
                 </Col>
                 <Col span={16} className="payment_table_content">
-                  {selectedTheater}
+                  {ticket.place}
                 </Col>
                 <Col span={8} className="payment_table_label">
                   상영관
                 </Col>
                 <Col span={16} className="payment_table_content">
-                  {selectedTime.room}
+                  {ticket.room}
                 </Col>
                 <Col span={8} className="payment_table_label">
                   시간
                 </Col>
                 <Col span={16} className="payment_table_content">
-                  {selectedTime.time}
+                  {ticket.time}
                 </Col>
                 <Col span={8} className="payment_table_label">
                   좌석
                 </Col>
                 <Col span={16} className="payment_table_content">
-                  {selectedSeat.row}
-                  {selectedSeat.col}
+                  {ticket.seatRow}
+                  {ticket.seatCol}
                 </Col>
               </Row>
             </Col>

@@ -37,6 +37,23 @@ export interface IAlarm {
   content: string;
 }
 
+export interface ISeat {
+  seatRow: string;
+  seatCol: number;
+}
+export interface ITicket extends ISeat {
+  reserveNo: string;
+  title: string;
+  place: string;
+  room: string;
+  // seatRow: string;
+  // seatCol: number;
+  date: string;
+  time: string;
+  price: number;
+}
+
 export interface IStoreState {
   alarmData: IAlarm[];
+  ticketData: ITicket;
 }

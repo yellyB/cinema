@@ -1,14 +1,36 @@
 import React from "react";
 import { Button, List, Typography, Row, Col, Divider, Menu } from "antd";
 import { CloseOutlined } from "@ant-design/icons/lib/icons";
-import { IAlarm } from "../common/interface";
-import { useDispatch } from "react-redux";
+import { IAlarm, IStoreState, ITicket } from "../common/interface";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 
 const { Title } = Typography;
 
 const Alarm = (props: { alarmList: IAlarm[] }) => {
   const { alarmList } = props;
+
+  const ticket: ITicket = useSelector((state: IStoreState) => state.ticketData);
   const dispatch = useDispatch();
+
+  const handleTest = () => {
+    console.log(moment().format("YYYYMMDD"));
+    const data: ITicket = {
+      reserveNo: moment().format("YYYYMMDD") + "0106",
+      title: "222누젬ㄱ",
+      place: "222플레이스",
+      room: "dfs",
+      seatRow: "22ㄴㄷㅁㅅ",
+      seatCol: 1,
+      date: "222날짜",
+      time: "222시간",
+      price: 2353,
+    };
+    dispatch({
+      type: "setTicket",
+      data: data,
+    });
+  };
 
   return (
     <Menu style={{ width: 400 }}>
@@ -21,24 +43,27 @@ const Alarm = (props: { alarmList: IAlarm[] }) => {
             <Button
               type="text"
               onClick={() => {
-                dispatch({ type: "delete" });
+                dispatch({ type: "deleteAlarm" });
               }}
             >
               모두 지우기
             </Button>
+            <Button type="text" onClick={handleTest}>
+              티켓등록
+            </Button>
             <Button
               type="text"
               onClick={() => {
-                console.log(alarmList);
+                console.log(ticket);
               }}
             >
-              show
+              chedck
             </Button>
             <Button
               type="text"
               onClick={() => {
                 dispatch({
-                  type: "add",
+                  type: "addAlarm",
                   data: { title: "test", content: "egweg" },
                 });
               }}
@@ -69,7 +94,7 @@ const Alarm = (props: { alarmList: IAlarm[] }) => {
                         <Col span={2}>
                           <CloseOutlined
                             onClick={() =>
-                              dispatch({ type: "delete", idx: item.index })
+                              dispatch({ type: "deleteAlarm", idx: item.index })
                             }
                           />
                         </Col>

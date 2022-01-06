@@ -13,8 +13,13 @@ import { Progress, ProgressBtn } from "./Progress";
 import { StepOne } from "./StepOne";
 import { StepTwo } from "./StepTwo";
 import { StepThree } from "./StepThree";
-import { IMovieTimesEachRoom } from "../../common/interface";
+import {
+  IMovieTimesEachRoom,
+  IStoreState,
+  ITicket,
+} from "../../common/interface";
 import { SideCard } from "./SideCard";
+import { useSelector, useDispatch } from "react-redux";
 
 const { Title } = Typography;
 
@@ -34,44 +39,28 @@ const steps = [
 ];
 
 const Reservation = (props: { showOnlineTicket: Function }) => {
+  const ticket: ITicket = useSelector((state: IStoreState) => state.ticketData);
+
   const [stepValue, setStepValue] = useState<number>(0);
-
-  const [selectedMovie, setSelectedMovie] = useState<string>("");
-  const [selectedTheater, setSelectedTheater] = useState<string>("");
-  const [selectedTime, setSelectedTimes] = useState<IMovieTimesEachRoom>({
-    room: "",
-    time: "",
-  });
-
-  const [selectedSeat, setSelectedSeat] = useState<any>({
-    row: "",
-    col: 0,
-  });
 
   const handleStepChange = (direction: string) => {
     if (direction !== "prev") {
       if (
         stepValue === 0 &&
-        (selectedMovie === "" ||
-          selectedTheater === "" ||
-          selectedTime.room === "")
+        (ticket.title === "" ||
+          ticket.place === "" ||
+          ticket.room === "" ||
+          ticket.time === "")
       ) {
         message.warning("예매 정보를 선택해주세요.");
         return;
       }
-      if (
-        stepValue === 1 &&
-        (selectedSeat.row === "" || selectedSeat.col === 0)
-      ) {
+      if (stepValue === 1 && (ticket.seatRow === "" || ticket.seatCol === 0)) {
         message.warning("좌석을 선택해주세요.");
         return;
       }
     }
     setStepValue(direction === "prev" ? stepValue - 1 : stepValue + 1);
-  };
-
-  const handleTagOnClick = (room: string, time: string) => {
-    setSelectedTimes({ room: room, time: time });
   };
 
   return (
@@ -84,38 +73,14 @@ const Reservation = (props: { showOnlineTicket: Function }) => {
       <Row>
         <Col span={17}>
           <Card className="reserve_card">
-            {stepValue === 0 && (
-              <StepOne
-                setSelectedMovie={setSelectedMovie}
-                setSelectedTheater={setSelectedTheater}
-                selectedTime={selectedTime}
-                setSelectedTimes={handleTagOnClick}
-              />
-            )}
-            {stepValue === 1 && (
-              <StepTwo
-                selectedSeat={selectedSeat}
-                setSelectedSeat={setSelectedSeat}
-              />
-            )}
-            {stepValue === 2 && (
-              <StepThree
-                selectedMovie={selectedMovie}
-                selectedTheater={selectedTheater}
-                selectedTime={selectedTime}
-                selectedSeat={selectedSeat}
-              />
-            )}
+            {stepValue === 0 && <StepOne />}
+            {stepValue === 1 && <StepTwo />}
+            {stepValue === 2 && <StepThree />}
           </Card>
         </Col>
         <Col span={7}>
           <Card style={{ margin: "15px", background: "#cfcfcf" }}>
-            <SideCard
-              selectedMovie={selectedMovie}
-              selectedTheater={selectedTheater}
-              selectedTime={selectedTime}
-              selectedSeat={selectedSeat}
-            />
+            <SideCard />
           </Card>
         </Col>
       </Row>

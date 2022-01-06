@@ -1,5 +1,7 @@
 import React from "react";
 import { Carousel, Row, Col, PageHeader } from "antd";
+import { useSelector } from "react-redux";
+import { IStoreState, ITicket } from "../common/interface";
 
 const PresentReserve = () => {
   const contentStyle = {
@@ -15,6 +17,8 @@ const PresentReserve = () => {
     console.log(a, b, c);
   };
 
+  const ticket: ITicket = useSelector((state: IStoreState) => state.ticketData);
+
   return (
     <React.Fragment>
       <PageHeader title="온라인 티켓" subTitle="" />
@@ -23,7 +27,14 @@ const PresentReserve = () => {
           <Carousel afterChange={onChange}>
             <div>
               <h3 style={contentStyle}>
-                영화제목, 영화관, 좌석, 영화날짜/시간
+                예매번호{ticket.reserveNo}
+                영화제목{ticket.title} 영화관 {ticket.place}
+                상영관 {ticket.room}좌석 {ticket.seatRow}
+                {ticket.seatCol}
+                영화날짜/시간
+                {ticket.date}
+                {ticket.time}
+                가격{ticket.price}
               </h3>
             </div>
             <div>

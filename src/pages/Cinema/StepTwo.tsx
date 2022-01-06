@@ -1,39 +1,30 @@
 import React, { useState } from "react";
-import { InputNumber, Row, Col, Typography, Tag, Card } from "antd";
+import { Row, Col, Typography, Tag } from "antd";
 import { SeatTags } from "./SeatTag";
+import { ISeat, IStoreState, ITicket } from "../../common/interface";
+import { useSelector, useDispatch } from "react-redux";
 
 const { Title } = Typography;
 
-const StepTwo = (props: { selectedSeat: any; setSelectedSeat: Function }) => {
-  const { selectedSeat, setSelectedSeat } = props;
+const StepTwo = () => {
+  const ticket: ITicket = useSelector((state: IStoreState) => state.ticketData);
+  const dispatch = useDispatch();
 
-  const [limit] = useState<any>({ min: 0, max: 10 });
-  const [adultCount, setAdultCount] = useState<number>(0);
-  const [kidCount, setKidCount] = useState<number>(0);
-
-  const handleAdultOnChange = (value: any) => {
-    setAdultCount(value);
-  };
-  const handleKidOnChange = (value: any) => {
-    setKidCount(value);
+  const handleTagOnClick = (seat: ISeat) => {
+    const data: ITicket = {
+      ...ticket,
+      seatRow: seat.seatRow,
+      seatCol: seat.seatCol,
+      price: 10000,
+    };
+    dispatch({
+      type: "setTicket",
+      data: data,
+    });
   };
 
   return (
     <>
-      {/* 성인
-      <InputNumber
-        min={limit.min}
-        max={limit.max}
-        value={adultCount}
-        onChange={handleAdultOnChange}
-      />
-      청소년
-      <InputNumber
-        min={limit.min}
-        max={limit.max}
-        value={kidCount}
-        onChange={handleKidOnChange}
-      /> */}
       <Row justify="center">
         <Title>SCREEN</Title>
       </Row>
@@ -62,8 +53,11 @@ const StepTwo = (props: { selectedSeat: any; setSelectedSeat: Function }) => {
                         key={index}
                         row={String.fromCharCode(row + 65)}
                         col={col}
-                        selectedSeat={selectedSeat}
-                        handleTagOnClick={setSelectedSeat}
+                        selectedSeat={{
+                          seatRow: ticket.seatRow,
+                          seatCol: ticket.seatCol,
+                        }}
+                        handleTagOnClick={handleTagOnClick}
                       />
                     </Col>
                   )}

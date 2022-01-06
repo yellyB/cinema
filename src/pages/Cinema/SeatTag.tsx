@@ -1,5 +1,6 @@
 import React from "react";
 import { Tag } from "antd";
+import { ISeat } from "../../common/interface";
 
 const { CheckableTag } = Tag;
 
@@ -21,22 +22,22 @@ const notSelectedStyle = {
 const SeatTags = (props: {
   row: string;
   col: number;
-  selectedSeat: any;
+  selectedSeat: ISeat;
   handleTagOnClick: Function;
 }) => {
   const { row, col, selectedSeat, handleTagOnClick } = props;
 
   const handleChange = (e: boolean) => {
-    handleTagOnClick({ row: row, col: col });
+    handleTagOnClick({ seatRow: row, seatCol: col });
   };
 
   return (
     <>
       <CheckableTag
-        checked={selectedSeat.row === row && selectedSeat.col === col}
+        checked={selectedSeat.seatRow === row && selectedSeat.seatCol === col}
         onChange={handleChange}
         style={
-          selectedSeat.row === row && selectedSeat.col === col
+          selectedSeat.seatRow === row && selectedSeat.seatCol === col
             ? selectedStyle
             : notSelectedStyle
         }
