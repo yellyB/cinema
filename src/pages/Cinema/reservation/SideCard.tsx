@@ -1,10 +1,6 @@
 import React from "react";
 import { Row, Col, Card, Typography, Tag, Divider } from "antd";
-import {
-  IMovieTimesEachRoom,
-  IStoreState,
-  ITicket,
-} from "../../common/interface";
+import { IStoreState, ITicket } from "../../../common/interface";
 import { useSelector } from "react-redux";
 
 const { Text, Title } = Typography;

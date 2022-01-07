@@ -9,10 +9,7 @@ export interface IMovieStartTimes {
   name: string;
   times: string[];
 }
-export interface IMovieTimesEachRoom {
-  room: string;
-  time: string;
-}
+
 export interface IComment {
   writer: string;
   movieKey: number;

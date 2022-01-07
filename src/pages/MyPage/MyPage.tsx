@@ -6,10 +6,10 @@ import {
   AppstoreOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import ReserveHistory from "./MyPage/ReserveHistory";
-import EditInfo from "./MyPage/EditInfo";
-import MyInfo from "./MyPage/MyInfo";
-import Point from "./MyPage/Point";
+import MyInfo from "./info/MyInfo";
+import Point from "./info/Point";
+import EditInfo from "./info/EditInfo";
+import ReserveHistory from "./history/ReserveHistory";
 
 function MyPage() {
   const [menuItemKey, setMenuItemKey] = useState<string>("reserveHistory");

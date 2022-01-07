@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import WriteComment from "./WriteComment";
 import Comments from "./Comments";
-import { IComment } from "../../common/interface";
+import { getComments } from "../../../common/axios";
+import { IComment } from "../../../common/interface";
 import { Card, List, Row } from "antd";
-import { getComments } from "../../common/axios";
 
 const CommentList = ({ comments }) => (
   <>

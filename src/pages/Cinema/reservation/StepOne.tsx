@@ -4,12 +4,11 @@ import { SlidingTabs } from "./SlidingTabs";
 import { TimeTag } from "./TimeTag";
 import {
   IMovieStartTimes,
-  IMovieTimesEachRoom,
   IMovieList,
   ITicket,
   IStoreState,
-} from "../../common/interface";
-import { getMovieList, getTheaters, getTimes } from "../../common/axios";
+} from "../../../common/interface";
+import { getMovieList, getTheaters, getTimes } from "../../../common/axios";
 import { useDispatch, useSelector } from "react-redux";
 
 const { Title } = Typography;

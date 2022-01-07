@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Descriptions,
   Form,
   Input,
   Button,
@@ -12,11 +11,7 @@ import {
   Select,
   InputNumber,
 } from "antd";
-import {
-  IMovieTimesEachRoom,
-  IStoreState,
-  ITicket,
-} from "../../common/interface";
+import { IStoreState, ITicket } from "../../../common/interface";
 import { useDispatch, useSelector } from "react-redux";
 
 const { Title, Text } = Typography;

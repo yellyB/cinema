@@ -1,13 +1,13 @@
 import React, { useState, createElement, useEffect } from "react";
 import { Card, Col, PageHeader, Row, Space, Typography } from "antd";
-import { IMovieList } from "../../common/interface";
+import { IMovieList } from "../../../common/interface";
 import Meta from "antd/lib/card/Meta";
 import {
   StarOutlined,
   LikeOutlined,
   MessageOutlined,
 } from "@ant-design/icons/lib/icons";
-import { getMovieList } from "../../common/axios";
+import { getMovieList } from "../../../common/axios";
 
 const { Link } = Typography;
 

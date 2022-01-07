@@ -1,27 +1,12 @@
 import React, { useState } from "react";
-import {
-  Typography,
-  Card,
-  Col,
-  List,
-  message,
-  PageHeader,
-  Row,
-  Tabs,
-} from "antd";
+import { Typography, Card, Col, message, Row } from "antd";
 import { Progress, ProgressBtn } from "./Progress";
 import { StepOne } from "./StepOne";
 import { StepTwo } from "./StepTwo";
 import { StepThree } from "./StepThree";
-import {
-  IMovieTimesEachRoom,
-  IStoreState,
-  ITicket,
-} from "../../common/interface";
+import { IStoreState, ITicket } from "../../../common/interface";
 import { SideCard } from "./SideCard";
-import { useSelector, useDispatch } from "react-redux";
-
-const { Title } = Typography;
+import { useSelector } from "react-redux";
 
 const steps = [
   {

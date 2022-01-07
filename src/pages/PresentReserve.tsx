@@ -25,23 +25,21 @@ const PresentReserve = () => {
       <PageHeader title="온라인 티켓" subTitle="" />
       <Row>
         <Col span={8} offset={8}>
-          <Carousel afterChange={onChange}>
-            <div>
-              <h3 style={contentStyle}>
-                예매번호{ticket.reserveNo}
-                영화제목{ticket.title} 영화관 {ticket.place}
-                상영관 {ticket.room}좌석 {ticket.seatRow}
-                {ticket.seatCol}
-                영화날짜/시간
-                {ticket.date}
-                {ticket.time}
-                가격{ticket.price}
-              </h3>
-            </div>
-            <div>
-              <h3 style={contentStyle}>결제정보</h3>
-            </div>
-          </Carousel>
+          <div>
+            <h3 style={contentStyle}>
+              예매번호{ticket.reserveNo}
+              영화제목{ticket.title} 영화관 {ticket.place}
+              상영관 {ticket.room}좌석 {ticket.seatRow}
+              {ticket.seatCol}
+              영화날짜/시간
+              {ticket.date}
+              {ticket.time}
+              가격{ticket.price}
+            </h3>
+          </div>
+          <div>
+            <h3 style={contentStyle}>결제정보</h3>
+          </div>
         </Col>
       </Row>
     </React.Fragment>

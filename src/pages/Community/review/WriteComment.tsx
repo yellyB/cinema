@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Comment, Avatar, Form, Button, Input, Select } from "antd";
 import CommentRate from "./CommentRate";
-import { IMovieList } from "../../common/interface";
-import { getMovieList } from "../../common/axios";
+import { IMovieList } from "../../../common/interface";
+import { getMovieList } from "../../../common/axios";
 
 const { TextArea } = Input;
 const { Option } = Select;

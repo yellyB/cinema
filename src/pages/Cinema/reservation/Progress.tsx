@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Steps, Button, message, Row, Col } from "antd";
 import { MessageType } from "antd/lib/message";
 import { useSelector, useDispatch } from "react-redux";
-import { IAlarm, IStoreState, ITicket } from "../../common/interface";
+import { IAlarm, IStoreState, ITicket } from "../../../common/interface";
 import moment from "moment";
 
 const { Step } = Steps;
@@ -60,11 +60,11 @@ const ProgressBtn = (props: {
       .then(() => {
         dispatch({
           type: "addAlarm",
-          data: { title: "test", content: "egweg" },
+          data: { title: "예매 성공", content: "예매 완료되었습니다." },
         });
       })
       .then(() => {
-        //실제 서비스에서는 이부분에서 DB에 데이터 저장함
+        //실제 서비스에서는 이부분에서 DB에 데이터 저장하고 store는 초기화
         const data: ITicket = {
           ...ticket,
           reserveNo: moment().format("YYYYMMDD") + "0106",

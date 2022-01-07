@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Menu } from "antd";
 import { MailOutlined, CalendarOutlined } from "@ant-design/icons";
-import MovieList from "./Cinema/MovieList";
-import Reservation from "./Cinema/Reservation";
+import MovieList from "./movie/MovieList";
+import Reservation from "./reservation/Reservation";
 
 function Cinema(props: { showOnlineTicket: Function }) {
   const [menuItemKey, setMenuItemKey] = useState<string>("movie");

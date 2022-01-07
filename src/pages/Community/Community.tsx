@@ -5,8 +5,8 @@ import {
   AppstoreOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import Review from "./Community/Review";
-import Board from "./Community/Board";
+import Review from "./review/Review";
+import Board from "./board/Board";
 
 function Community() {
   const [menuItemKey, setMenuItemKey] = useState<string>("review");

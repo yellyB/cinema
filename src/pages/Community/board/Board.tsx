@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { PageHeader, Table } from "antd";
 import ShowTableContent from "./ShowTableContent";
-import { IBoard } from "../../common/interface";
-import { getBoardData } from "../../common/axios";
+import { IBoard } from "../../../common/interface";
+import { getBoardData } from "../../../common/axios";
 
 const Board = () => {
   const columns = [
