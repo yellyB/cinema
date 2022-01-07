@@ -14,7 +14,7 @@ import { IAlarm, IStoreState } from "./common/interface";
 
 const { Header, Content, Footer } = Layout;
 
-function App() {
+const App = () => {
   const [menuItemKey, setMenuItemKey] = useState<string>("cinema");
 
   const alarmList: IAlarm[] = useSelector(
@@ -129,6 +129,6 @@ function App() {
       <Footer style={{ textAlign: "center" }}>Toy Project by.yelly</Footer>
     </Layout>
   );
-}
+};
 
 export default App;

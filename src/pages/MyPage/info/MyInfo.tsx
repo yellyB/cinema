@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Menu } from "antd";
 import { MailOutlined, AppstoreOutlined } from "@ant-design/icons";
 
-function MyInfo() {
+const MyInfo = () => {
   const [menuItemKey, setMenuItemKey] = useState<string>("movie");
 
   const handlMenuOnClick = (e: any) => {
@@ -10,6 +10,6 @@ function MyInfo() {
   };
 
   return <React.Fragment>MyInfo</React.Fragment>;
-}
+};
 
 export default MyInfo;

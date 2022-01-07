@@ -4,7 +4,7 @@ import { MailOutlined, CalendarOutlined } from "@ant-design/icons";
 import MovieList from "./movie/MovieList";
 import Reservation from "./reservation/Reservation";
 
-function Cinema(props: { showOnlineTicket: Function }) {
+const Cinema = (props: { showOnlineTicket: Function }) => {
   const [menuItemKey, setMenuItemKey] = useState<string>("movie");
 
   const handlMenuOnClick = (e: any) => {
@@ -33,6 +33,6 @@ function Cinema(props: { showOnlineTicket: Function }) {
       )}
     </React.Fragment>
   );
-}
+};
 
 export default Cinema;

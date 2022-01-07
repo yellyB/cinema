@@ -7,7 +7,7 @@ import {
   LikeOutlined,
   MessageOutlined,
 } from "@ant-design/icons/lib/icons";
-import { getMovieList } from "../../../common/axios";
+import { getMovieList } from "../../../common/api";
 
 const { Link } = Typography;
 

@@ -11,7 +11,7 @@ import Point from "./info/Point";
 import EditInfo from "./info/EditInfo";
 import ReserveHistory from "./history/ReserveHistory";
 
-function MyPage() {
+const MyPage = () => {
   const [menuItemKey, setMenuItemKey] = useState<string>("reserveHistory");
 
   const handlMenuOnClick = (e: any) => {
@@ -31,9 +31,9 @@ function MyPage() {
           </Menu.ItemGroup>
         </SubMenu> */}
 
-        <Menu.Item key="myInfo" icon={<AppstoreOutlined />}>
+        {/* <Menu.Item key="myInfo" icon={<AppstoreOutlined />}>
           내 정보
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item key="reserveHistory" icon={<AppstoreOutlined />}>
           예매이력
         </Menu.Item>
@@ -47,6 +47,6 @@ function MyPage() {
       {menuItemKey === "editInfo" && <EditInfo />}
     </React.Fragment>
   );
-}
+};
 
 export default MyPage;

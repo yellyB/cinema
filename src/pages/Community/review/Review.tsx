@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import WriteComment from "./WriteComment";
 import Comments from "./Comments";
-import { getComments } from "../../../common/axios";
+import { getComments } from "../../../common/api";
 import { IComment } from "../../../common/interface";
 import { Card, List, Row } from "antd";
 

@@ -1,5 +1,11 @@
 import axios from "axios";
-import { IBoard, IComment, IMovieList, IMovieStartTimes } from "./interface";
+import {
+  IBoard,
+  IComment,
+  IMovieList,
+  IMovieStartTimes,
+  ITicket,
+} from "./interface";
 
 export const getMovieList = async () => {
   let movies: IMovieList[] = [];
@@ -79,4 +85,15 @@ export const getComments = async () => {
     });
 
   return comments;
+};
+
+export const getTicketHistory = async () => {
+  let tickets: ITicket[] = [];
+  await axios
+    .get(process.env.PUBLIC_URL + "/datas/reserveHistory.json")
+    .then((response) => {
+      tickets = response.data.data;
+    });
+
+  return tickets;
 };

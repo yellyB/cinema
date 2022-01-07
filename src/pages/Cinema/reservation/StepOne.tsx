@@ -8,7 +8,7 @@ import {
   ITicket,
   IStoreState,
 } from "../../../common/interface";
-import { getMovieList, getTheaters, getTimes } from "../../../common/axios";
+import { getMovieList, getTheaters, getTimes } from "../../../common/api";
 import { useDispatch, useSelector } from "react-redux";
 
 const { Title } = Typography;

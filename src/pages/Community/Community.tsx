@@ -8,7 +8,7 @@ import {
 import Review from "./review/Review";
 import Board from "./board/Board";
 
-function Community() {
+const Community = () => {
   const [menuItemKey, setMenuItemKey] = useState<string>("review");
 
   const handlMenuOnClick = (e: any) => {
@@ -32,6 +32,6 @@ function Community() {
       {menuItemKey === "board" && <Board />}
     </React.Fragment>
   );
-}
+};
 
 export default Community;

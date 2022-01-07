@@ -1,24 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Descriptions } from "antd";
+import { getTicketHistory } from "../../../common/api";
+import { ITicket } from "../../../common/interface";
+import PastTicket from "./PastTicket";
 
-function ReserveHistory() {
-  const [menuItemKey, setMenuItemKey] = useState<string>("movie");
+const ReserveHistory = () => {
+  const [tickets, setTickets] = useState<ITicket[]>([]);
 
-  const handlMenuOnClick = (e: any) => {
-    setMenuItemKey(e.key);
-  };
+  useEffect(() => {
+    getTicketHistory().then((res) => {
+      setTickets(res);
+    });
+  }, []);
 
   return (
     <React.Fragment>
-      <Descriptions title="영화 제목">
-        <Descriptions.Item label="UserName">영화관명/몇 관</Descriptions.Item>
-        <Descriptions.Item label="Telephone">영화날짜</Descriptions.Item>
-        <Descriptions.Item label="Live">영화시간</Descriptions.Item>
-        <Descriptions.Item label="Remark">10,000원</Descriptions.Item>
-        <Descriptions.Item label="Address">몇포인트 적립</Descriptions.Item>
-      </Descriptions>
+      {tickets.map((item: ITicket, index: number) => (
+        <PastTicket ticketData={item} key={index} />
+      ))}
     </React.Fragment>
   );
-}
+};
 
 export default ReserveHistory;

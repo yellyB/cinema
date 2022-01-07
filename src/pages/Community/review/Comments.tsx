@@ -17,7 +17,7 @@ import {
   LikeFilled,
 } from "@ant-design/icons";
 import { IComment, IMovieList } from "../../../common/interface";
-import { getMovieList } from "../../../common/axios";
+import { getMovieList } from "../../../common/api";
 
 const { Title, Text } = Typography;
 
