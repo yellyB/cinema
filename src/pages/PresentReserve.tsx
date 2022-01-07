@@ -32,9 +32,8 @@ const PresentReserve = (props: { reserveOnClick: Function }) => {
       <PageHeader title="온라인 티켓" subTitle="" />
       {ticket.title === "" ? (
         <Empty
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
           description={<span>현재 예매한 영화가 없습니다.</span>}
-          style={{ marginTop: "20%" }}
+          style={{ marginTop: "15%" }}
         >
           <Button
             type="primary"

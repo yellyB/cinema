@@ -33,11 +33,11 @@ const Alarm = (props: { alarmList: IAlarm[] }) => {
   };
 
   return (
-    <Menu style={{ width: 400 }}>
+    <Menu className="alarm_wrapper">
       <Row>
         <Col span={24}>
           <Row justify="space-between" align="middle">
-            <Title level={4} style={{ paddingLeft: 20 }}>
+            <Title level={4} className="alarm_title">
               알림
             </Title>
             <Button
@@ -45,6 +45,7 @@ const Alarm = (props: { alarmList: IAlarm[] }) => {
               onClick={() => {
                 dispatch({ type: "deleteAlarm" });
               }}
+              style={{ marginTop: 5 }}
             >
               모두 지우기
             </Button>
@@ -77,11 +78,11 @@ const Alarm = (props: { alarmList: IAlarm[] }) => {
         </Col>
         <Col span={24}>
           <List
-            style={{ border: 0, maxHeight: 500, overflowY: "auto" }}
+            className="alarm_list_wrapper"
             bordered
             dataSource={alarmList}
             renderItem={(item: IAlarm) => (
-              <List.Item className="main_alarm_list">
+              <List.Item className="alarm_list_item">
                 <List.Item.Meta
                   title={
                     <>

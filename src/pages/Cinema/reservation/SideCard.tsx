@@ -17,7 +17,7 @@ const SideCard = () => {
       <Divider dashed>
         <Title level={3}>티켓 정보</Title>
       </Divider>
-      <Card style={{ border: "2px dashed #333", marginBottom: 30 }}>
+      <Card className="sideCard_inner">
         <Row gutter={[0, 8]}>
           <Col span={24}>
             <Title level={4}>{ticket.title === "" ? "-" : ticket.title}</Title>

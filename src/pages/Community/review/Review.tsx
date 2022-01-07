@@ -3,19 +3,28 @@ import WriteComment from "./WriteComment";
 import Comments from "./Comments";
 import { getComments } from "../../../common/api";
 import { IComment } from "../../../common/interface";
-import { Card, List, Row } from "antd";
+import { Card, List, Typography, Row } from "antd";
+
+const { Text } = Typography;
 
 const CommentList = ({ comments }) => (
   <>
     <Row justify="center">
       <List
         dataSource={comments}
-        header={`${comments.length} ${
-          comments.length > 1 ? "replies" : "reply"
-        }`}
+        header={
+          <>
+            {comments.length}
+            {comments.length > 1 ? (
+              <Text>개의 리뷰들</Text>
+            ) : (
+              <Text>개의 리뷰</Text>
+            )}
+          </>
+        }
         itemLayout="horizontal"
         renderItem={(props: any) => <Comments item={props} />}
-        style={{ maxWidth: "60%" }}
+        className="review_list"
       />
     </Row>
   </>

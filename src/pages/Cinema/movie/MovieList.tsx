@@ -30,7 +30,11 @@ const MovieList = (props: { reserveOnClick: Function }) => {
 
   return (
     <React.Fragment>
-      <PageHeader title="Movie" subTitle="현재 상영 중" />
+      <PageHeader
+        title="Movie"
+        subTitle="현재 상영 중"
+        style={{ marginBottom: "-20px" }}
+      />
       <Row gutter={[8, 16]}>
         {ranking.map((item: IMovieList, index: number) => (
           <Col span={8} key={index}>
@@ -48,7 +52,7 @@ const MovieList = (props: { reserveOnClick: Function }) => {
                   예매하기
                 </Link>
               }
-              style={{ width: 300 }}
+              style={{ width: "100%" }}
               cover={
                 <img
                   alt={item.title}

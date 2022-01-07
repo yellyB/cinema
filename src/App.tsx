@@ -56,7 +56,7 @@ const App = () => {
   );
 
   return (
-    <Layout className="layout" style={{ fontFamily: "scoreDream1" }}>
+    <Layout style={{ fontFamily: "scoreDream1" }}>
       <Affix>
         <Header>
           <div className="logo" />
@@ -80,7 +80,7 @@ const App = () => {
               >
                 <Badge count={alarmList.length}>
                   <Button
-                    icon={<BellOutlined style={{ fontSize: 20 }} />}
+                    icon={<BellOutlined className="nav_dropdown_icon" />}
                     shape="circle"
                     ghost
                     style={{ borderColor: "transparent" }}
@@ -91,7 +91,7 @@ const App = () => {
             <Col span={1}>
               <Dropdown overlay={dropDownMenu} trigger={["click"]}>
                 <Button
-                  icon={<UserOutlined style={{ fontSize: 20 }} />}
+                  icon={<UserOutlined className="nav_dropdown_icon" />}
                   shape="circle"
                   ghost
                   style={{ borderColor: "transparent" }}
@@ -101,14 +101,7 @@ const App = () => {
           </Row>
         </Header>
       </Affix>
-      <Content
-        style={{
-          padding: "0 50px",
-          width: "100%",
-          height: "100%",
-          minHeight: "100vh",
-        }}
-      >
+      <Content className="layout_content">
         <Row>
           <Col span={16} offset={4}>
             {menuItemKey === "cinema" && (
@@ -127,7 +120,7 @@ const App = () => {
           </Col>
         </Row>
       </Content>
-      <Footer style={{ textAlign: "center" }}>Toy Project by.yelly</Footer>
+      <Footer className="layout_footer">Toy Project by.yelly</Footer>
     </Layout>
   );
 };

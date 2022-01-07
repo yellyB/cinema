@@ -57,7 +57,6 @@ const Board = () => {
 
   return (
     <React.Fragment>
-      <PageHeader className="site-page-header" title="자유게시판" />
       <Table
         columns={columns}
         dataSource={data}

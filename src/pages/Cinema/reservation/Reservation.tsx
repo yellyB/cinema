@@ -64,7 +64,7 @@ const Reservation = (props: { showOnlineTicket: Function }) => {
           </Card>
         </Col>
         <Col span={7}>
-          <Card style={{ margin: "15px", background: "#cfcfcf" }}>
+          <Card className="sideCard_wrapper">
             <SideCard />
           </Card>
         </Col>

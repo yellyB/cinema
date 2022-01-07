@@ -9,6 +9,7 @@ import {
   Tooltip,
   Card,
   Button,
+  message,
 } from "antd";
 import {
   DislikeOutlined,
@@ -41,6 +42,10 @@ const Comments = (props: { item: IComment }) => {
     setAction("disliked");
   };
 
+  const handleDeleteOnClick = () => {
+    message.info("개발 예정");
+  };
+
   useEffect(() => {
     getMovieList().then((res) => {
       setMovies(res);
@@ -63,18 +68,19 @@ const Comments = (props: { item: IComment }) => {
       </span>
     </Tooltip>,
     <span key="comment-basic-reply-to">Reply to</span>,
-    // <Col
-    //   key="comment-delete"
-    //   hidden={localStorage.getItem("userName") !== writer}
-    // >
-    //   <Button danger type="text" onClick={handleDeleteOnClick}>
-    //     삭제
-    //   </Button>
-    // </Col>,
+    <Col
+      key="comment-delete"
+      hidden={localStorage.getItem("userName") !== writer}
+    >
+      <Button danger type="text" onClick={handleDeleteOnClick}>
+        삭제
+      </Button>
+    </Col>,
   ];
 
   return (
     <Comment
+      className="review_list_item"
       actions={actions}
       author={writer}
       avatar={
@@ -86,23 +92,21 @@ const Comments = (props: { item: IComment }) => {
         />
       }
       content={
-        <p>
-          <Row>
-            <Col span={24}>
-              <Rate disabled value={rate} />
-            </Col>
-            <Col span={24} style={{ paddingTop: 5, border: "0px solid red" }}>
-              <Title level={4}>
-                {movies
-                  .filter((movie: IMovieList) => movie.key === movieKey)
-                  .map((movie: IMovieList) => movie.title)}
-              </Title>
-            </Col>
-            <Col span={24}>
-              <Text>{content}</Text>
-            </Col>
-          </Row>
-        </p>
+        <Row>
+          <Col span={24}>
+            <Rate disabled value={rate} />
+          </Col>
+          <Col span={24} style={{ paddingTop: 5, border: "0px solid red" }}>
+            <Title level={4}>
+              {movies
+                .filter((movie: IMovieList) => movie.key === movieKey)
+                .map((movie: IMovieList) => movie.title)}
+            </Title>
+          </Col>
+          <Col span={24}>
+            <Text>{content}</Text>
+          </Col>
+        </Row>
       }
     ></Comment>
   );
