@@ -4,12 +4,16 @@ import SubMenu from "antd/lib/menu/SubMenu";
 import {
   MailOutlined,
   AppstoreOutlined,
-  SettingOutlined,
+  HistoryOutlined,
 } from "@ant-design/icons";
 import MyInfo from "./info/MyInfo";
 import Point from "./info/Point";
 import EditInfo from "./info/EditInfo";
 import ReserveHistory from "./history/ReserveHistory";
+
+const bigFont = {
+  fontSize: "18pt",
+};
 
 const MyPage = () => {
   const [menuItemKey, setMenuItemKey] = useState<string>("reserveHistory");
@@ -23,6 +27,7 @@ const MyPage = () => {
         onClick={handlMenuOnClick}
         selectedKeys={[menuItemKey]}
         mode="horizontal"
+        className="nav_under"
       >
         {/* <SubMenu key="1" icon={<SettingOutlined />} title="내 정보">
           <Menu.ItemGroup title="Item 1">
@@ -34,7 +39,11 @@ const MyPage = () => {
         {/* <Menu.Item key="myInfo" icon={<AppstoreOutlined />}>
           내 정보
         </Menu.Item> */}
-        <Menu.Item key="reserveHistory" icon={<AppstoreOutlined />}>
+        <Menu.Item
+          key="reserveHistory"
+          icon={<HistoryOutlined style={bigFont} />}
+          style={bigFont}
+        >
           예매이력
         </Menu.Item>
         {/* <Menu.Item key="editInfo" icon={<MailOutlined />}>

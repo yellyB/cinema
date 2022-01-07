@@ -37,7 +37,7 @@ const ProgressBtn = (props: {
   const submit = async () => {
     const promise = new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(message.info("결제 진행 중"));
+        resolve(message.warning("결제 진행 중"));
       }, 1000);
     })
       .then(() => {

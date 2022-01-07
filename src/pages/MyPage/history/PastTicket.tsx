@@ -23,7 +23,7 @@ const PastTicket = (props: { ticketData: ITicket; key: number }) => {
 
   return (
     <React.Fragment>
-      <Collapse expandIconPosition="right">
+      <Collapse expandIconPosition="right" style={{ marginTop: 3 }}>
         <Panel header={header} key={key}>
           <Col span={24}>
             <Descriptions title="상세 정보">

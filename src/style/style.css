@@ -26,3 +26,15 @@
   padding: 3%;
   padding-left: 30px;
 }
+
+.ticket_wrapper {
+  border: 2px solid green;
+  background: #c1093f;
+  padding: 30px 5px 30px 5px;
+  margin-top: 70px;
+  width: 500px;
+  height: 600px;
+}
+.nav_under {
+  padding-top: 10px;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.less";
-import "./style.css";
+import "./style/style.css";
 import { Affix, Badge, Button, Col, Dropdown, Layout, Menu, Row } from "antd";
 import { Cinema } from "./pages/Cinema";
 import { Community } from "./pages/Community";
@@ -109,7 +109,6 @@ const App = () => {
           minHeight: "100vh",
         }}
       >
-        <div className="site-layout-content" />
         <Row>
           <Col span={16} offset={4}>
             {menuItemKey === "cinema" && (
@@ -122,7 +121,9 @@ const App = () => {
             {menuItemKey === "login" && (
               <Login setMenuItemKey={setMenuItemKey} />
             )}
-            {menuItemKey === "presentReserve" && <PresentReserve />}
+            {menuItemKey === "presentReserve" && (
+              <PresentReserve reserveOnClick={() => setMenuItemKey("cinema")} />
+            )}
           </Col>
         </Row>
       </Content>

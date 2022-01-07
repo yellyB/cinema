@@ -1,4 +1,3 @@
-import { Row } from "antd";
 import React, { useState, useEffect } from "react";
 import { getTicketHistory } from "../../../common/api";
 import { ITicket } from "../../../common/interface";
@@ -15,7 +14,7 @@ const ReserveHistory = () => {
 
   return (
     <React.Fragment>
-      <div style={{ marginTop: "10px" }}>
+      <div style={{ marginTop: 20 }}>
         {tickets.map((item: ITicket, index: number) => (
           <PastTicket ticketData={item} key={index} />
         ))}
