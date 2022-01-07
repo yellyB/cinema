@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button, Checkbox, message, Typography, Row } from "antd";
+
+const { Title } = Typography;
 
 const Login = (props: { setMenuItemKey: Function }) => {
   const { setMenuItemKey } = props;
@@ -25,6 +27,9 @@ const Login = (props: { setMenuItemKey: Function }) => {
 
   return (
     <React.Fragment>
+      <Row justify="center">
+        <Title style={{ marginTop: "15%", fontSize: "36pt" }}>BOM CINEMA</Title>
+      </Row>
       <Form
         name="basic"
         labelCol={{ span: 8 }}
@@ -62,7 +67,13 @@ const Login = (props: { setMenuItemKey: Function }) => {
           <Button type="primary" htmlType="submit">
             로그인
           </Button>
-          <Button type="link" htmlType="button">
+          <Button
+            type="link"
+            htmlType="button"
+            onClick={() => {
+              message.info("개발 예정");
+            }}
+          >
             회원가입
           </Button>
         </Form.Item>
