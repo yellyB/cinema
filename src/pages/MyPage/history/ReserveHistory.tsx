@@ -1,5 +1,5 @@
+import { Row } from "antd";
 import React, { useState, useEffect } from "react";
-import { Descriptions } from "antd";
 import { getTicketHistory } from "../../../common/api";
 import { ITicket } from "../../../common/interface";
 import PastTicket from "./PastTicket";
@@ -15,9 +15,11 @@ const ReserveHistory = () => {
 
   return (
     <React.Fragment>
-      {tickets.map((item: ITicket, index: number) => (
-        <PastTicket ticketData={item} key={index} />
-      ))}
+      <div style={{ marginTop: "10px" }}>
+        {tickets.map((item: ITicket, index: number) => (
+          <PastTicket ticketData={item} key={index} />
+        ))}
+      </div>
     </React.Fragment>
   );
 };

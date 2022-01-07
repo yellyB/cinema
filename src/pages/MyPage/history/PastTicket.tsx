@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Collapse, Descriptions, Row, Col, Typography } from "antd";
 import { ITicket } from "../../../common/interface";
 
@@ -7,10 +7,6 @@ const { Panel } = Collapse;
 
 const PastTicket = (props: { ticketData: ITicket; key: number }) => {
   const { ticketData: ticket, key } = props;
-
-  useEffect(() => {
-    console.log(props);
-  }, []);
 
   const header = (
     <Row style={{ width: "100%" }}>
@@ -27,7 +23,7 @@ const PastTicket = (props: { ticketData: ITicket; key: number }) => {
 
   return (
     <React.Fragment>
-      <Collapse defaultActiveKey={[0]} expandIconPosition="right">
+      <Collapse expandIconPosition="right">
         <Panel header={header} key={key}>
           <Col span={24}>
             <Descriptions title="상세 정보">
