@@ -44,9 +44,16 @@ const ProgressBtn = (props: {
         message.success("결제 완료!");
       })
       .then(() => {
-        setTimeout(() => {
-          showOnlineTicket();
-        }, 1000);
+        //실제 서비스에서는 이부분에서 DB에 데이터 저장하고 store는 초기화
+        const data: ITicket = {
+          ...ticket,
+          reserveNo: moment().format("YYYYMMDD") + "0106",
+          date: moment().format("YYYY-MM-DD : hh:mm:ss"),
+        };
+        dispatch({
+          type: "setTicket",
+          data: data,
+        });
       });
     return promise;
   };
@@ -64,20 +71,14 @@ const ProgressBtn = (props: {
         });
       })
       .then(() => {
-        //실제 서비스에서는 이부분에서 DB에 데이터 저장하고 store는 초기화
-        const data: ITicket = {
-          ...ticket,
-          reserveNo: moment().format("YYYYMMDD") + "0106",
-        };
-        dispatch({
-          type: "setTicket",
-          data: { data },
-        });
+        setTimeout(() => {
+          showOnlineTicket();
+        }, 1000);
       });
   };
 
   return (
-    <Row>
+    <Row style={{ marginTop: "30px" }}>
       <Col span={11}>
         <Button
           disabled={step === 0}

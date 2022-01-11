@@ -28,7 +28,7 @@ const Login = (props: { setMenuItemKey: Function }) => {
   return (
     <React.Fragment>
       <Row justify="center">
-        <Title style={{ marginTop: "15%", fontSize: "36pt" }}>BOM CINEMA</Title>
+        <Title style={{ marginTop: "20%", fontSize: "36pt" }}>BOM CINEMA</Title>
       </Row>
       <Form
         name="basic"
@@ -63,8 +63,12 @@ const Login = (props: { setMenuItemKey: Function }) => {
           <Checkbox>아이디 기억하기</Checkbox>
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
+        <Form.Item wrapperCol={{ offset: 8, span: 8 }}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ width: "100%", height: 40 }}
+          >
             로그인
           </Button>
           <Button
@@ -73,6 +77,7 @@ const Login = (props: { setMenuItemKey: Function }) => {
             onClick={() => {
               message.info("개발 예정");
             }}
+            style={{ width: "100%", height: 40 }}
           >
             회원가입
           </Button>

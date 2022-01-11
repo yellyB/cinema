@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Button, Row, Col, Typography, Dropdown, Menu } from "antd";
 import { IBoard } from "../../common/interface";
 import { EyeOutlined } from "@ant-design/icons";
-
+let domparser = new DOMParser();
 const { Text, Link } = Typography;
 
 const ShowTableContent = (props: {
@@ -37,7 +37,7 @@ const ShowTableContent = (props: {
       <Row>
         <Col span={21}>
           <Dropdown overlay={menu} placement="bottomLeft">
-            <Button type="text">{writer}</Button>
+            <Button type="link">{writer}</Button>
           </Dropdown>
         </Col>
         <Col span={3}>
@@ -46,7 +46,9 @@ const ShowTableContent = (props: {
             {" " + viewCount}
           </Text>
         </Col>
-        <Col span={24}>{content?.replace("<|>", "\n")}</Col>
+        <Col span={22} offset={1}>
+          {content?.replaceAll("<|>", "\n")}
+        </Col>
       </Row>
     </Modal>
   );

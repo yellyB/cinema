@@ -47,12 +47,13 @@
 }
 
 .ticket_wrapper {
-  border: 2px solid green;
   background: #c1093f;
-  padding: 30px 5px 30px 5px;
+  padding: 50px 10px 50px 10px;
   margin-top: 5%;
-  width: 500px;
-  height: 600px;
+  width: 35%;
+  /* width: 300px; */
+  /* height: 600px; */
+  border-radius: 15px;
 }
 .sideCard_wrapper {
   margin: 15px;
@@ -79,7 +80,9 @@
 }
 .alarm_list_item {
   border: 3px solid #ffffff;
-  background-color: #eff1cd;
+  background-color: #c7f7ff;
+  border-radius: 10px;
+  margin-bottom: 4px;
 }
 .review_list {
   margin-top: -10px;
@@ -87,7 +90,8 @@
 }
 .review_list_item {
   padding: 5px 50px 5px 50px;
-  /* border: 2px solid #d1d1d1; */
-  background-color: #eeeeee;
-  margin-bottom: 5px;
+  border: 4px solid #ffe8e8;
+  /* background-color: #ffe8e8; */
+  margin-bottom: 12px;
+  border-radius: 18px;
 }

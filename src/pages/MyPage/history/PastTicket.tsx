@@ -32,7 +32,10 @@ const PastTicket = (props: { ticketData: ITicket; key: number }) => {
                 {ticket.room} {ticket.seatRow}
                 {ticket.seatCol}
               </Descriptions.Item>
-              <Descriptions.Item label="일시">
+              <Descriptions.Item label="상영 시간">
+                {ticket.time}
+              </Descriptions.Item>
+              <Descriptions.Item label="결제 일시">
                 {ticket.date} {ticket.time}
               </Descriptions.Item>
               <Descriptions.Item label="가격">{ticket.price}</Descriptions.Item>

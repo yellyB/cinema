@@ -1,8 +1,19 @@
-import React from "react";
-import { Image, Row, Col, PageHeader, Empty, Button, Card } from "antd";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import {
+  Image,
+  Row,
+  Col,
+  PageHeader,
+  Empty,
+  Button,
+  Card,
+  Typography,
+} from "antd";
+import { useSelector, useDispatch } from "react-redux";
 import { IStoreState, ITicket } from "../common/interface";
 import Meta from "antd/lib/card/Meta";
+
+const { Text } = Typography;
 
 const PresentReserve = (props: { reserveOnClick: Function }) => {
   const { reserveOnClick } = props;
@@ -11,20 +22,58 @@ const PresentReserve = (props: { reserveOnClick: Function }) => {
   const ticket: ITicket = useSelector((state: IStoreState) => state.ticketData);
 
   const content = (
-    <Row>
-      <Col span={24}>제목{ticket.title}</Col>
-      <Col span={24}> 예매번호{ticket.reserveNo}</Col>
-      <Col span={24}>
-        영화제목{ticket.title} 영화관 {ticket.place}
-      </Col>
-      <Col span={24}>
-        상영관 {ticket.room}좌석 {ticket.seatRow} {ticket.seatCol}
-      </Col>
-      <Col span={24}>
-        영화날짜/시간 {ticket.date} {ticket.time}
-      </Col>
-      <Col span={24}>가격{ticket.price}</Col>
-    </Row>
+    <>
+      <Row justify="center">
+        <Col>
+          <Text style={{ fontSize: "32pt" }}>{ticket.title}</Text>
+        </Col>
+      </Row>
+      <Row justify="center">
+        <Col>
+          <Text type="secondary">예매번호: {ticket.reserveNo}</Text>
+        </Col>
+      </Row>
+      <Row justify="center" style={{ marginTop: "32px" }}>
+        <Col>
+          <Text style={{ fontSize: "18pt" }}>
+            {ticket.place}점/{ticket.room}
+          </Text>
+        </Col>
+      </Row>
+      <Row justify="center">
+        <Col>
+          <Text
+            style={{
+              fontSize: "18pt",
+              color: "#00000073",
+              background: "#ffe58f",
+            }}
+          >
+            {ticket.seatRow}열{ticket.seatCol}
+          </Text>
+        </Col>
+      </Row>
+      <Row justify="center" style={{ marginTop: "12px" }}>
+        <Col>
+          <Text style={{ fontSize: "28pt" }}>시작 시간 {ticket.time}~</Text>
+        </Col>
+      </Row>
+      <Row justify="center">
+        <Col>
+          <Text type="secondary">20분 전부터 입장 가능합니다.</Text>
+        </Col>
+      </Row>
+      <Row justify="center" style={{ marginTop: "12px" }}>
+        <Col span={6}>
+          <Image
+            preview={false}
+            width={"100%"}
+            alt="QR CODE"
+            src={process.env.PUBLIC_URL + "/images/qrcode.jpg"}
+          />
+        </Col>
+      </Row>
+    </>
   );
 
   return (
@@ -47,20 +96,7 @@ const PresentReserve = (props: { reserveOnClick: Function }) => {
       ) : (
         <Row justify="center">
           <Col className="ticket_wrapper">
-            <Card
-              style={{ height: "100%" }}
-              cover={
-                <Image
-                  preview={false}
-                  width={100}
-                  alt="QR CODE"
-                  src={process.env.PUBLIC_URL + "/images/qrcode.jpg"}
-                />
-              }
-            >
-              {content}
-              {/* <Meta title={ticket.title} description={content} /> */}
-            </Card>
+            <Card>{content}</Card>
           </Col>
         </Row>
       )}

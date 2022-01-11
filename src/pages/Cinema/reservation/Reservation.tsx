@@ -51,7 +51,7 @@ const Reservation = (props: { showOnlineTicket: Function }) => {
   return (
     <React.Fragment>
       <Row style={{ marginTop: 30 }}>
-        <Col span={18}>
+        <Col span={17}>
           <Progress steps={steps} step={stepValue} />
         </Col>
       </Row>
@@ -69,13 +69,16 @@ const Reservation = (props: { showOnlineTicket: Function }) => {
           </Card>
         </Col>
       </Row>
-
-      <ProgressBtn
-        steps={steps}
-        step={stepValue}
-        handleStepChange={handleStepChange}
-        showOnlineTicket={props.showOnlineTicket}
-      />
+      <Row>
+        <Col span={17}>
+          <ProgressBtn
+            steps={steps}
+            step={stepValue}
+            handleStepChange={handleStepChange}
+            showOnlineTicket={props.showOnlineTicket}
+          />
+        </Col>
+      </Row>
     </React.Fragment>
   );
 };
