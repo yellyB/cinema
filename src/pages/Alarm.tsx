@@ -87,10 +87,7 @@ const Alarm = (props: { alarmList: IAlarm[] }) => {
                   title={
                     <>
                       <Row justify="center" align="middle">
-                        <Col span={21}>
-                          {item.title}
-                          {item.index}
-                        </Col>
+                        <Col span={21}>{item.title}</Col>
                         <Col span={1}></Col>
                         <Col span={2}>
                           <CloseOutlined
