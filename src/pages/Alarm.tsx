@@ -49,7 +49,7 @@ const Alarm = (props: { alarmList: IAlarm[] }) => {
             >
               모두 지우기
             </Button>
-            <Button type="text" onClick={handleTest}>
+            {/* <Button type="text" onClick={handleTest}>
               티켓등록
             </Button>
             <Button
@@ -70,7 +70,7 @@ const Alarm = (props: { alarmList: IAlarm[] }) => {
               }}
             >
               add
-            </Button>
+            </Button> */}
           </Row>
         </Col>
         <Col span={24}>
