@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { Menu } from "antd";
-import SubMenu from "antd/lib/menu/SubMenu";
-import {
-  MailOutlined,
-  AppstoreOutlined,
-  HistoryOutlined,
-} from "@ant-design/icons";
+import { HistoryOutlined } from "@ant-design/icons";
 import MyInfo from "./info/MyInfo";
 import Point from "./info/Point";
 import EditInfo from "./info/EditInfo";

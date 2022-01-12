@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PageHeader, Table } from "antd";
+import { Table } from "antd";
 import ShowTableContent from "./ShowTableContent";
 import { IBoard } from "../../../common/interface";
 import { getBoardData } from "../../../common/api";

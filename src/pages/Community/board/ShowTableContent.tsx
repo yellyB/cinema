@@ -1,9 +1,9 @@
 import React from "react";
 import { Modal, Button, Row, Col, Typography, Dropdown, Menu } from "antd";
-import { IBoard } from "../../common/interface";
+import { IBoard } from "../../../common/interface";
 import { EyeOutlined } from "@ant-design/icons";
-let domparser = new DOMParser();
-const { Text, Link } = Typography;
+
+const { Text } = Typography;
 
 const ShowTableContent = (props: {
   rowData: IBoard;

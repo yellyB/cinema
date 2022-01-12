@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Menu } from "antd";
-import {
-  VideoCameraFilled,
-  CalendarFilled,
-  CalendarOutlined,
-} from "@ant-design/icons";
+import { VideoCameraFilled, CalendarOutlined } from "@ant-design/icons";
 import MovieList from "./movie/MovieList";
 import Reservation from "./reservation/Reservation";
 

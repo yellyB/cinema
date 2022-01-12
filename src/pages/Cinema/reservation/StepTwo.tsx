@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Row, Col, Typography, Tag } from "antd";
 import { SeatTags } from "./SeatTag";
 import { ISeat, IStoreState, ITicket } from "../../../common/interface";

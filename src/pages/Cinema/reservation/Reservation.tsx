@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography, Card, Col, message, Row } from "antd";
+import { Card, Col, message, Row } from "antd";
 import { Progress, ProgressBtn } from "./Progress";
 import { StepOne } from "./StepOne";
 import { StepTwo } from "./StepTwo";

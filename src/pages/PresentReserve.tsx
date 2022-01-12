@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Image,
   Row,
@@ -9,9 +9,8 @@ import {
   Card,
   Typography,
 } from "antd";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { IStoreState, ITicket } from "../common/interface";
-import Meta from "antd/lib/card/Meta";
 
 const { Text } = Typography;
 

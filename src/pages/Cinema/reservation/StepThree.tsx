@@ -12,14 +12,13 @@ import {
   InputNumber,
 } from "antd";
 import { IStoreState, ITicket } from "../../../common/interface";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
 const StepThree = () => {
   const ticket: ITicket = useSelector((state: IStoreState) => state.ticketData);
-  const dispatch = useDispatch();
 
   const [form] = Form.useForm();
   const [pointOrign, setPointOrign] = useState<number>(1490);

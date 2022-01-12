@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Steps, Button, message, Row, Col } from "antd";
-import { MessageType } from "antd/lib/message";
 import { useSelector, useDispatch } from "react-redux";
-import { IAlarm, IStoreState, ITicket } from "../../../common/interface";
+import { IStoreState, ITicket } from "../../../common/interface";
 import moment from "moment";
 
 const { Step } = Steps;

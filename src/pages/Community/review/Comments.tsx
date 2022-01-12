@@ -7,7 +7,6 @@ import {
   Col,
   Typography,
   Tooltip,
-  Card,
   Button,
   message,
 } from "antd";
