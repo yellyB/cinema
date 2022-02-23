@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Affix, Badge, Button, Col, Dropdown, Layout, Menu, Row } from "antd";
 import { UserOutlined, BellOutlined } from "@ant-design/icons/lib/icons";
-import Alarm from "../pages/Alarm";
+import Alarm from "../components/Alarm";
 import { useSelector } from "react-redux";
 import { IAlarm, IStoreState } from "../common/interface";
-import DropDownMenu from "../component/DropDownMenu";
+import DropDownMenu from "../components/DropDownMenu";
 
 const { Header } = Layout;
 

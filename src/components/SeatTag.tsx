@@ -1,6 +1,6 @@
 import React from "react";
 import { Tag } from "antd";
-import { ISeat } from "../../../common/interface";
+import { ISeat } from "../common/interface";
 
 const { CheckableTag } = Tag;
 
@@ -48,4 +48,4 @@ const SeatTags = (props: {
   );
 };
 
-export { SeatTags };
+export default SeatTags;

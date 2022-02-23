@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Comment, Avatar, Form, Button, Input, Select } from "antd";
-import CommentRate from "./CommentRate";
+import CommentRate from "../../../components/CommentRate";
 import { IMovieList } from "../../../common/interface";
 import { getMovieList } from "../../../common/api";
 

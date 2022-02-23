@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Typography } from "antd";
 import { SlidingTabs } from "./SlidingTabs";
-import { TimeTag } from "./TimeTag";
 import {
   IMovieStartTimes,
   IMovieList,
@@ -10,6 +9,7 @@ import {
 } from "../../../common/interface";
 import { getMovieList, getTheaters, getTimes } from "../../../common/api";
 import { useDispatch, useSelector } from "react-redux";
+import { TimeTag } from "../../../components";
 
 const { Title } = Typography;
 

@@ -36,4 +36,4 @@ const TimeTag = (props: {
   );
 };
 
-export { TimeTag };
+export default TimeTag;

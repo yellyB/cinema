@@ -1,8 +1,8 @@
 import React from "react";
 import { Row, Col, Typography, Tag } from "antd";
-import { SeatTags } from "./SeatTag";
 import { ISeat, IStoreState, ITicket } from "../../../common/interface";
 import { useSelector, useDispatch } from "react-redux";
+import SeatTags from "../../../components/SeatTag";
 
 const { Title } = Typography;
 
