@@ -1,125 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.less";
 import "./style/style.css";
-import { Affix, Badge, Button, Col, Dropdown, Layout, Menu, Row } from "antd";
-import { Cinema } from "./pages/Cinema";
-import { Community } from "./pages/Community";
-import { MyPage } from "./pages/MyPage";
-import { UserOutlined, BellOutlined } from "@ant-design/icons/lib/icons";
-import Login from "./pages/Login";
-import PresentReserve from "./pages/PresentReserve";
-import Alarm from "./pages/Alarm";
-import { useSelector } from "react-redux";
-import { IAlarm, IStoreState } from "./common/interface";
+import { Layout } from "antd";
+import ContentContainer from "./container/ContentContainer";
+import HeaderContainer from "./container/HeaderContainer";
 
-const { Header, Content, Footer } = Layout;
+const { Footer } = Layout;
 
 const App = () => {
   const [menuItemKey, setMenuItemKey] = useState<string>("cinema");
 
-  const alarmList: IAlarm[] = useSelector(
-    (state: IStoreState) => state.alarmData
-  );
-
-  const handleMenuItemOnClick = (e: any) => {
-    setMenuItemKey(e.key);
+  const handleMenuItemOnClick = (key: string) => {
+    // console.log(e.key);
+    setMenuItemKey(key);
   };
-
-  const handleDropDownOnClick = (e: { key: React.SetStateAction<string> }) => {
-    setMenuItemKey(e.key);
-  };
-
-  const handleLogoutOnClick = () => {
-    global.localStorage.removeItem("userName");
-    global.localStorage.removeItem("password");
-
-    setMenuItemKey("cinema");
-  };
-
-  const handleLoginOnClick = () => {
-    setMenuItemKey("login");
-  };
-
-  const dropDownMenu = (
-    <Menu onClick={handleDropDownOnClick}>
-      <Menu.Item key="login" icon={<UserOutlined />}>
-        {global.localStorage.getItem("userName") ? (
-          <span onClick={handleLogoutOnClick}>로그아웃</span>
-        ) : (
-          <span onClick={handleLoginOnClick}>로그인</span>
-        )}
-      </Menu.Item>
-      <Menu.Item key="presentReserve" icon={<UserOutlined />}>
-        예매현황
-      </Menu.Item>
-    </Menu>
-  );
 
   return (
     <Layout style={{ fontFamily: "scoreDream1" }}>
-      <Affix>
-        <Header>
-          <div className="logo" />
-          <Row>
-            <Col span={10} offset={4}>
-              <Menu
-                theme="dark"
-                mode="horizontal"
-                defaultSelectedKeys={[menuItemKey]}
-                onClick={handleMenuItemOnClick}
-              >
-                <Menu.Item key={"cinema"}>시네마</Menu.Item>
-                <Menu.Item key={"community"}>커뮤니티</Menu.Item>
-                <Menu.Item key={"mypage"}>내 정보</Menu.Item>
-              </Menu>
-            </Col>
-            <Col span={1} offset={4}>
-              <Dropdown
-                overlay={<Alarm alarmList={alarmList} />}
-                trigger={["click"]}
-              >
-                <Badge count={alarmList.length}>
-                  <Button
-                    icon={<BellOutlined className="nav_dropdown_icon" />}
-                    shape="circle"
-                    ghost
-                    style={{ borderColor: "transparent" }}
-                  />
-                </Badge>
-              </Dropdown>
-            </Col>
-            <Col span={1}>
-              <Dropdown overlay={dropDownMenu} trigger={["click"]}>
-                <Button
-                  icon={<UserOutlined className="nav_dropdown_icon" />}
-                  shape="circle"
-                  ghost
-                  style={{ borderColor: "transparent" }}
-                />
-              </Dropdown>
-            </Col>
-          </Row>
-        </Header>
-      </Affix>
-      <Content className="layout_content">
-        <Row>
-          <Col span={16} offset={4}>
-            {menuItemKey === "cinema" && (
-              <Cinema
-                showOnlineTicket={() => setMenuItemKey("presentReserve")}
-              />
-            )}
-            {menuItemKey === "community" && <Community />}
-            {menuItemKey === "mypage" && <MyPage />}
-            {menuItemKey === "login" && (
-              <Login setMenuItemKey={setMenuItemKey} />
-            )}
-            {menuItemKey === "presentReserve" && (
-              <PresentReserve reserveOnClick={() => setMenuItemKey("cinema")} />
-            )}
-          </Col>
-        </Row>
-      </Content>
+      <HeaderContainer
+        menuItemKey={menuItemKey}
+        menuItemOnClick={handleMenuItemOnClick}
+      />
+      <ContentContainer
+        menuItemKey={menuItemKey}
+        menuItemOnClick={handleMenuItemOnClick}
+      />
       <Footer className="layout_footer">Toy Project by.yelly</Footer>
     </Layout>
   );
