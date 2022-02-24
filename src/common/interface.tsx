@@ -54,3 +54,9 @@ export interface IStoreState {
   alarmData: IAlarm[];
   ticketData: ITicket;
 }
+
+export interface ISubMenu {
+  key: string;
+  icon: object;
+  menuName: string;
+}

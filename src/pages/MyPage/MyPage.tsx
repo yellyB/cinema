@@ -1,54 +1,52 @@
 import React, { useState } from "react";
-import { Menu } from "antd";
-import { HistoryOutlined } from "@ant-design/icons";
+import {
+  HistoryOutlined,
+  AppstoreOutlined,
+  MailOutlined,
+} from "@ant-design/icons";
 import MyInfo from "./info/MyInfo";
 import Point from "./info/Point";
 import EditInfo from "./info/EditInfo";
 import ReserveHistory from "./history/ReserveHistory";
-
-const bigFont = {
-  fontSize: "18pt",
-};
+import { ISubMenu } from "../../common/interface";
+import { SubMenu } from "../../components";
 
 const MyPage = () => {
-  const [menuItemKey, setMenuItemKey] = useState<string>("reserveHistory");
+  const [subMenuKey, setSubMenuKey] = useState<string>("reserveHistory");
 
   const handlMenuOnClick = (e: any) => {
-    setMenuItemKey(e.key);
+    setSubMenuKey(e.key);
   };
+
+  const menus: ISubMenu[] = [
+    // {
+    //   key: "myInfo",
+    //   icon: <AppstoreOutlined />,
+    //   menuName: "내 정보",
+    // },
+    {
+      key: "reserveHistory",
+      icon: <HistoryOutlined />,
+      menuName: "예매이력",
+    },
+    // {
+    //   key: "editInfo",
+    //   icon: <MailOutlined />,
+    //   menuName: "정보수정",
+    // },
+  ];
+
   return (
     <React.Fragment>
-      <Menu
-        onClick={handlMenuOnClick}
-        selectedKeys={[menuItemKey]}
-        mode="horizontal"
-        className="nav_under"
-      >
-        {/* <SubMenu key="1" icon={<SettingOutlined />} title="내 정보">
-          <Menu.ItemGroup title="Item 1">
-            <Menu.Item key="myInfo">기본정보</Menu.Item>
-            <Menu.Item key="point">포인트</Menu.Item>
-          </Menu.ItemGroup>
-        </SubMenu> */}
-
-        {/* <Menu.Item key="myInfo" icon={<AppstoreOutlined />}>
-          내 정보
-        </Menu.Item> */}
-        <Menu.Item
-          key="reserveHistory"
-          icon={<HistoryOutlined style={bigFont} />}
-          style={bigFont}
-        >
-          예매이력
-        </Menu.Item>
-        {/* <Menu.Item key="editInfo" icon={<MailOutlined />}>
-          정보수정
-        </Menu.Item> */}
-      </Menu>
-      {menuItemKey === "myInfo" && <MyInfo />}
-      {menuItemKey === "point" && <Point />}
-      {menuItemKey === "reserveHistory" && <ReserveHistory />}
-      {menuItemKey === "editInfo" && <EditInfo />}
+      <SubMenu
+        menus={menus}
+        menuItemKey={subMenuKey}
+        menuOnClick={handlMenuOnClick}
+      />
+      {subMenuKey === "myInfo" && <MyInfo />}
+      {subMenuKey === "point" && <Point />}
+      {subMenuKey === "reserveHistory" && <ReserveHistory />}
+      {subMenuKey === "editInfo" && <EditInfo />}
     </React.Fragment>
   );
 };

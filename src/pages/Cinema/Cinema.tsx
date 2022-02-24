@@ -1,47 +1,41 @@
 import React, { useState } from "react";
-import { Menu } from "antd";
 import { VideoCameraFilled, CalendarOutlined } from "@ant-design/icons";
 import MovieList from "./movie/MovieList";
 import Reservation from "./reservation/Reservation";
-
-const bigFont = {
-  fontSize: "18pt",
-};
+import { SubMenu } from "../../components";
+import { ISubMenu } from "../../common/interface";
 
 const Cinema = (props: { showOnlineTicket: Function }) => {
-  const [menuItemKey, setMenuItemKey] = useState<string>("movie");
+  const [subMenuKey, setSubMenuKey] = useState<string>("movie");
 
   const handlMenuOnClick = (e: any) => {
-    setMenuItemKey(e.key);
+    setSubMenuKey(e.key);
   };
+
+  const menus: ISubMenu[] = [
+    {
+      key: "movie",
+      icon: <VideoCameraFilled />,
+      menuName: "영화",
+    },
+    {
+      key: "reservation",
+      icon: <CalendarOutlined />,
+      menuName: "예매",
+    },
+  ];
 
   return (
     <React.Fragment>
-      <Menu
-        onClick={handlMenuOnClick}
-        selectedKeys={[menuItemKey]}
-        mode="horizontal"
-        className="nav_under"
-      >
-        <Menu.Item
-          key="movie"
-          icon={<VideoCameraFilled style={bigFont} />}
-          style={bigFont}
-        >
-          영화
-        </Menu.Item>
-        <Menu.Item
-          key="reservation"
-          icon={<CalendarOutlined style={bigFont} />}
-          style={bigFont}
-        >
-          예매
-        </Menu.Item>
-      </Menu>
-      {menuItemKey === "movie" && (
-        <MovieList reserveOnClick={() => setMenuItemKey("reservation")} />
+      <SubMenu
+        menus={menus}
+        menuItemKey={subMenuKey}
+        menuOnClick={handlMenuOnClick}
+      />
+      {subMenuKey === "movie" && (
+        <MovieList reserveOnClick={() => setSubMenuKey("reservation")} />
       )}
-      {menuItemKey === "reservation" && (
+      {subMenuKey === "reservation" && (
         <Reservation showOnlineTicket={props.showOnlineTicket} />
       )}
     </React.Fragment>
